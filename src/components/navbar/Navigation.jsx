@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const user = false
     // Navigation links fragment
     const LinksFragment = (
         <>
@@ -119,25 +119,30 @@ const Navigation = () => {
                         </div>
 
                         {/* Profile & Notification */}
-                        <div className="flex items-center mt-4 lg:mt-0">
-                            <button
-                                type="button"
-                                className="flex items-center focus:outline-none"
-                                aria-label="toggle profile dropdown"
-                            >
-                                <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                        className="object-cover w-full h-full"
-                                        alt="avatar"
-                                    />
-                                </div>
+                        {
+                            user ? <div className="flex items-center mt-4 lg:mt-0">
+                                <button
+                                    type="button"
+                                    className="flex items-center focus:outline-none"
+                                    aria-label="toggle profile dropdown"
+                                >
+                                    <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                                            className="object-cover w-full h-full"
+                                            alt="avatar"
+                                        />
+                                    </div>
 
-                                <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
-                                    Khatab wedaa
-                                </h3>
-                            </button>
-                        </div>
+                                    <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
+                                        Khatab wedaa
+                                    </h3>
+                                </button>
+                            </div> : <div className="flex justify-center items-center"><Link to="/login"><button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                                Login
+                            </button></Link></div>
+                        }
+
                     </div>
                 </div>
             </div>

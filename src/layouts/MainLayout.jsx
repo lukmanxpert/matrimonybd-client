@@ -1,19 +1,22 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "../components/navbar/Navigation";
 import Footer from "../components/footer/Footer";
 
 const MainLayout = () => {
+    const { pathname } = useLocation()
     return (
         <div>
-            <div>
-                <Navigation></Navigation>
-            </div>
-            <div className="min-h-screen px-2 md:px-4">
+            {pathname.includes("login") || pathname.includes("register") ||
+                <div>
+                    <Navigation></Navigation>
+                </div>}
+            <div className="min-h-screen">
                 <Outlet></Outlet>
             </div>
-            <div>
-                <Footer></Footer>
-            </div>
+            {pathname.includes("login") || pathname.includes("register") ||
+                <div>
+                    <Footer></Footer>
+                </div>}
         </div>
     );
 };

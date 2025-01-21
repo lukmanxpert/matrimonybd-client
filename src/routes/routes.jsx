@@ -6,6 +6,9 @@ import Biodatas from "../pages/biodatas/Biodatas";
 import AboutUs from "../pages/about-us/AboutUs";
 import ContactUs from "../pages/contact-us/ContactUs";
 import ErrorPages from "../pages/error/ErrorPages";
+import Dashboard from "../layouts/Dashboard";
+import Login from "../pages/auth/login";
+import Registration from "../pages/auth/Registration";
 
 export const routes = createBrowserRouter([
     {
@@ -32,6 +35,18 @@ export const routes = createBrowserRouter([
             {
                 path: "/contact-us",
                 element: <ContactUs></ContactUs>
+            },
+            {
+                path: "/dashboard",
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: "/login",
+                element: <Login></Login>
+            },
+            {
+                path: "/register",
+                element: <Registration></Registration>
             }
         ]
     }
