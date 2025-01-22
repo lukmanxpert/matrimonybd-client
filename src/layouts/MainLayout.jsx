@@ -8,7 +8,7 @@ const MainLayout = () => {
     return (
         <div>
             {pathname.includes("login") || pathname.includes("register") || pathname.includes("dashboard") ||
-                <div>
+                <div className="sticky top-0 z-50">
                     <Navigation></Navigation>
                 </div>}
             <div className="min-h-screen">

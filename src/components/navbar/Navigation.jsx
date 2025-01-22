@@ -87,11 +87,22 @@ const Navigation = () => {
             >
                 Contact Us
             </NavLink>
+            { user && <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                    `px-3 py-2 mx-3 mt-2 rounded-md lg:mt-0 transition-colors duration-300 transform ${isActive
+                        ? "text-white bg-blue-600"
+                        : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    }`
+                }
+            >
+                Dashboard
+            </NavLink>}
         </>
     );
 
     return (
-        <nav className="relative bg-white shadow dark:bg-gray-800">
+        <nav className="relative bg-white h-16 flex items-center shadow dark:bg-gray-800">
             <div className="container px-6 py-4 mx-auto">
                 <div className="lg:flex lg:items-center lg:justify-between">
                     <div className="flex items-center justify-between">
