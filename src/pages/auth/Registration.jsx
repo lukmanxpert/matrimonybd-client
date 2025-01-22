@@ -1,7 +1,50 @@
+import { useContext, useState } from "react";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Registration = () => {
+    const { loginWithGoogle, setUser, signUpWithEmail } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const { state } = useLocation();
+    const [error, setError] = useState("")
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
+    const handleGoogleLogin = () => {
+        loginWithGoogle()
+            .then((result) => {
+                setUser(result.user)
+                navigate(state ? state : "/")
+                toast.success("Successfully Logged In")
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        if (password.length < 6) {
+            return setError("password must have at least 6 character!!")
+        }
+        if (!passwordRegex.test(password)) {
+            return setError("password must have 1 uppercase, 1 lowercase & 1 special character!!")
+        }
+        setError('')
+        signUpWithEmail(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                setUser(user)
+                navigate(state ? state : "/")
+                toast.success("Successfully Logged In")
+            }).catch((error) => {
+                toast.error(error.message)
+            })
+        console.log(name, photoURL, email, password);
+    }
     return (
         <div
             className="min-h-screen bg-cover bg-center flex items-center justify-center"
@@ -14,7 +57,7 @@ const Registration = () => {
                 <h1 className="text-2xl font-semibold text-center text-gray-800">
                     Matrimony Registration Form
                 </h1>
-                <form className="mt-4">
+                <form onSubmit={handleSubmit} className="mt-4">
                     {/* Full Name Field */}
                     <div className="mb-4">
                         <label
@@ -26,7 +69,9 @@ const Registration = () => {
                         <div className="relative mt-1">
                             <input
                                 type="text"
+                                name="name"
                                 id="fullName"
+                                required
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your full name"
                             />
@@ -44,7 +89,9 @@ const Registration = () => {
                         <div className="relative mt-1">
                             <input
                                 type="text"
+                                name="photoURL"
                                 id="photoURL"
+                                required
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your photo URL"
                             />
@@ -62,7 +109,9 @@ const Registration = () => {
                         <div className="relative mt-1">
                             <input
                                 type="email"
+                                name="email"
                                 id="email"
+                                required
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your email"
                             />
@@ -80,10 +129,13 @@ const Registration = () => {
                         <div className="relative mt-1">
                             <input
                                 type="password"
+                                name="password"
                                 id="password"
+                                required
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your password"
                             />
+                            <p className="text-red-500 text-xs py-1">{error && error}</p>
                         </div>
                     </div>
 
@@ -110,7 +162,7 @@ const Registration = () => {
                         <button className="flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-full hover:bg-blue-700">
                             <FaFacebook />
                         </button>
-                        <button className="flex items-center justify-center w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700">
+                        <button onClick={handleGoogleLogin} className="flex items-center justify-center w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700">
                             <FaGoogle />
                         </button>
                         <button className="flex items-center justify-center w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500">
@@ -119,6 +171,7 @@ const Registration = () => {
                     </div>
                 </div>
             </div>
+            <Toaster></Toaster>
         </div>
 
     );
