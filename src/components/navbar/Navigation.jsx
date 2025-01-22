@@ -1,9 +1,45 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const user = false
+    const { user, logOutUser, setUser } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        toast((t) => (
+            <span className="flex items-center gap-4">
+                Are You Sure?
+                <div>
+                    <button
+                        onClick={() => {
+                            logOutUser()
+                                .then(() => {
+                                    navigate("/")
+                                    toast.success('Logout Success');
+                                    setUser(null)
+                                })
+                                .catch((error) => {
+                                    console.error("Error during logout:", error);
+                                });
+                            toast.dismiss(t.id);
+                        }}
+                        className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                        Logout
+                    </button>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="px-3 py-1 ml-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </span>
+        ));
+    };
+
     // Navigation links fragment
     const LinksFragment = (
         <>
@@ -38,7 +74,7 @@ const Navigation = () => {
                     }`
                 }
             >
-                About US
+                About Us
             </NavLink>
             <NavLink
                 to="/contact-us"
@@ -49,7 +85,7 @@ const Navigation = () => {
                     }`
                 }
             >
-                Contact US
+                Contact Us
             </NavLink>
         </>
     );
@@ -108,9 +144,7 @@ const Navigation = () => {
 
                     {/* Navigation Menu */}
                     <div
-                        className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${isOpen
-                            ? "translate-x-0 opacity-100"
-                            : "opacity-0 -translate-x-full"
+                        className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${isOpen ? "translate-x-0 opacity-100" : "opacity-0 -translate-x-full"
                             }`}
                     >
                         {/* Render Links */}
@@ -118,34 +152,38 @@ const Navigation = () => {
                             {LinksFragment}
                         </div>
 
-                        {/* Profile & Notification */}
-                        {
-                            user ? <div className="flex items-center mt-4 lg:mt-0">
+                        {/* Profile & Logout */}
+                        {user ? (
+                            <div className="flex items-center mt-4 lg:mt-0">
+                                <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                                    <img
+                                        title={user?.displayName}
+                                        src={user?.photoURL}
+                                        className="object-cover w-full h-full"
+                                        alt="avatar"
+                                    />
+                                </div>
                                 <button
-                                    type="button"
-                                    className="flex items-center focus:outline-none"
-                                    aria-label="toggle profile dropdown"
+                                    onClick={handleLogout}
+                                    className="ml-4 px-4 py-2 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
                                 >
-                                    <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                            className="object-cover w-full h-full"
-                                            alt="avatar"
-                                        />
-                                    </div>
+                                    Logout
 
-                                    <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
-                                        Khatab wedaa
-                                    </h3>
                                 </button>
-                            </div> : <div className="flex justify-center items-center"><Link to="/login"><button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                                Login
-                            </button></Link></div>
-                        }
-
+                            </div>
+                        ) : (
+                            <div className="flex justify-center items-center">
+                                <Link to="/login">
+                                    <button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                                        Login
+                                    </button>
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
+            <Toaster />
         </nav>
     );
 };

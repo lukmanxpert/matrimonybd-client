@@ -1,6 +1,22 @@
+import { useContext } from "react";
 import { FaFacebook, FaGoogle, FaLock, FaTwitter, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 const Login = () => {
+    const { loginWithGoogle, setUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const { state } = useLocation();
+    const handleGoogleLogin = () => {
+        loginWithGoogle()
+            .then((result) => {
+                setUser(result.user)
+                navigate(state ? state : "/")
+                toast.success("Successfully Logged In")
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
     return (
         <div
             className="min-h-screen bg-cover bg-center flex items-center justify-center"
@@ -23,7 +39,8 @@ const Login = () => {
                         </label>
                         <div className="relative mt-1">
                             <input
-                                type="text"
+                                type="email"
+                                name="email"
                                 id="username"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your email"
@@ -44,6 +61,7 @@ const Login = () => {
                         <div className="relative mt-1">
                             <input
                                 type="password"
+                                name="password"
                                 id="password"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your password"
@@ -98,7 +116,7 @@ const Login = () => {
                         <button className="flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-full hover:bg-blue-700">
                             <FaFacebook />
                         </button>
-                        <button className="flex items-center justify-center w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700">
+                        <button onClick={handleGoogleLogin} className="flex items-center justify-center w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700">
                             <FaGoogle />
                         </button>
                         <button className="flex items-center justify-center w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500">
@@ -107,6 +125,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <Toaster></Toaster>
         </div>
     );
 };
