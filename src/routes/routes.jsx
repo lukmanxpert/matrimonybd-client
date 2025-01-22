@@ -49,5 +49,19 @@ export const routes = createBrowserRouter([
                 element: <Registration></Registration>
             }
         ]
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "/dashboard",
+                element: <Navigate to="/dashboard/home"></Navigate>
+            },
+            {
+                path: "/dashboard/home",
+                element: <Home></Home>
+            }
+        ]
     }
 ])

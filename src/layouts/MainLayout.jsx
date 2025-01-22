@@ -4,16 +4,17 @@ import Footer from "../components/footer/Footer";
 
 const MainLayout = () => {
     const { pathname } = useLocation()
+    console.log(pathname);
     return (
         <div>
-            {pathname.includes("login") || pathname.includes("register") ||
+            {pathname.includes("login") || pathname.includes("register") || pathname.includes("dashboard") ||
                 <div>
                     <Navigation></Navigation>
                 </div>}
             <div className="min-h-screen">
                 <Outlet></Outlet>
             </div>
-            {pathname.includes("login") || pathname.includes("register") ||
+            {pathname.includes("login") || pathname.includes("register") || pathname.includes("dashboard") ||
                 <div>
                     <Footer></Footer>
                 </div>}
