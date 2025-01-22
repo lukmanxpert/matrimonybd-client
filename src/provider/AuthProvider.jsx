@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config"
 
 export const AuthContext = createContext(null)
@@ -42,6 +42,11 @@ const AuthProvider = ({ children }) => {
             photoURL
         })
     }
+
+    // login user with email password
+    const loginUserWithEmail = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
     const authInfo = {
         user,
         setUser,
@@ -50,7 +55,8 @@ const AuthProvider = ({ children }) => {
         loginWithGoogle,
         logOutUser,
         signUpWithEmail,
-        updateUserProfile
+        updateUserProfile,
+        loginUserWithEmail
     }
     console.log(user);
     return (

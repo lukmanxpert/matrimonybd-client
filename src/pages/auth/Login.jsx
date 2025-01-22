@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 const Login = () => {
-    const { loginWithGoogle, setUser } = useContext(AuthContext)
+    const { loginWithGoogle, setUser, loginUserWithEmail } = useContext(AuthContext)
     const navigate = useNavigate()
     const { state } = useLocation();
     const handleGoogleLogin = () => {
@@ -14,7 +14,25 @@ const Login = () => {
                 navigate(state ? state : "/")
                 toast.success("Successfully Logged In")
             }).catch((error) => {
-                console.log(error);
+                toast.error(error.message)
+            })
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        if (password.length < 6) {
+            return toast.error("Password must be 6 character")
+        }
+        loginUserWithEmail(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                setUser(user)
+                toast.success("Successfully logged in")
+                navigate(state ? state : "/")
+            }).catch((error) => {
+                toast.error(error.message)
             })
     }
     return (
@@ -29,7 +47,7 @@ const Login = () => {
                 <h1 className="text-2xl font-semibold text-center text-gray-800">
                     Matrimony Login Form
                 </h1>
-                <form className="mt-4">
+                <form onSubmit={handleSubmit} className="mt-4">
                     <div className="mb-4">
                         <label
                             htmlFor="username"
