@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config"
 
 export const AuthContext = createContext(null)
@@ -34,6 +34,14 @@ const AuthProvider = ({ children }) => {
     const signUpWithEmail = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
+
+    // update user profile
+    const updateUserProfile = (displayName, photoURL) => {
+        return updateProfile(auth.currentUser, {
+            displayName,
+            photoURL
+        })
+    }
     const authInfo = {
         user,
         setUser,
@@ -41,7 +49,8 @@ const AuthProvider = ({ children }) => {
         setLoading,
         loginWithGoogle,
         logOutUser,
-        signUpWithEmail
+        signUpWithEmail,
+        updateUserProfile
     }
     console.log(user);
     return (

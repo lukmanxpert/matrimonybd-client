@@ -5,7 +5,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Registration = () => {
-    const { loginWithGoogle, setUser, signUpWithEmail } = useContext(AuthContext)
+    const { loginWithGoogle, setUser, signUpWithEmail, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
     const { state } = useLocation();
     const [error, setError] = useState("")
@@ -38,6 +38,11 @@ const Registration = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 setUser(user)
+                updateUserProfile(name, photoURL)
+                .then(() => {
+                    console.log("profile updated");
+                }).catch((error) => 
+                console.log(error))
                 navigate(state ? state : "/")
                 toast.success("Successfully Logged In")
             }).catch((error) => {
