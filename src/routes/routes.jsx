@@ -9,6 +9,7 @@ import ErrorPages from "../pages/error/ErrorPages";
 import Dashboard from "../layouts/Dashboard";
 import Login from "../pages/auth/login";
 import Registration from "../pages/auth/Registration";
+import PrivateRoute from "../provider/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -52,7 +53,7 @@ export const routes = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: "/dashboard",
@@ -60,7 +61,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/dashboard/home",
-                element: <Home></Home>
+                element: <AboutUs></AboutUs>
             }
         ]
     }
