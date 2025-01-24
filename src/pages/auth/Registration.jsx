@@ -3,8 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import SocialLogin from "../../components/shared/SocialLogin";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Registration = () => {
+    const axiosPublic = useAxiosPublic()
     const { setUser, signUpWithEmail, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
     const { state } = useLocation();
@@ -28,6 +30,18 @@ const Registration = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 setUser(user)
+                // user post to server
+                const userInfo = {
+                    name: name,
+                    email: email
+                }
+                axiosPublic.post("/users", userInfo)
+                    .then((response) => {
+                        console.log(response.data);
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+                // update user profile
                 updateUserProfile(name, photoURL)
                     .then(() => {
                         console.log("profile updated");
@@ -38,7 +52,6 @@ const Registration = () => {
             }).catch((error) => {
                 toast.error(error.message)
             })
-        console.log(name, photoURL, email, password);
     }
     return (
         <div
