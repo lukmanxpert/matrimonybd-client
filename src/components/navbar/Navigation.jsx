@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import useIsAdmin from "../../hooks/useIsAdmin";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logOutUser, setUser } = useContext(AuthContext);
     const navigate = useNavigate()
+    const isAdmin = useIsAdmin();
     const handleLogout = () => {
         toast((t) => (
             <span className="flex items-center gap-4">
@@ -87,8 +89,8 @@ const Navigation = () => {
             >
                 Contact Us
             </NavLink>
-            { user && <NavLink
-                to="/dashboard"
+            {user && <NavLink
+                to={`${isAdmin === "admin" ? "/dashboard/admin-dashboard" : "/dashboard/edit-biodata"}`}
                 className={({ isActive }) =>
                     `px-3 py-2 mx-3 mt-2 rounded-md lg:mt-0 transition-colors duration-300 transform ${isActive
                         ? "text-white bg-blue-600"

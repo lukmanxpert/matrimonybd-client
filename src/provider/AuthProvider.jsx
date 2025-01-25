@@ -17,7 +17,6 @@ const AuthProvider = ({ children }) => {
                 setLoading(false)
                 axiosPublic.post("/jwt", user)
                     .then(res => {
-                        console.log(res.data);
                         localStorage.setItem("token", res.data)
                     })
                     .catch(err => {
@@ -31,7 +30,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
         })
         return () => unsubscribe()
-    }, [])
+    }, [axiosPublic])
     const googleProvider = new GoogleAuthProvider();
 
 
