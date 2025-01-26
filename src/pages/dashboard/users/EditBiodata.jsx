@@ -1,35 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import toast, { Toaster } from "react-hot-toast";
 
 const EditBiodata = () => {
     const user = useAuth();
-    // const [formData, setFormData] = useState({
-    //     biodataType: "Male",
-    //     name: "",
-    //     profileImage: "",
-    //     dob: "",
-    //     height: "",
-    //     weight: "",
-    //     age: "",
-    //     occupation: "",
-    //     race: "",
-    //     fathersName: "",
-    //     mothersName: "",
-    //     permanentDivision: "",
-    //     presentDivision: "",
-    //     partnerAge: "",
-    //     partnerHeight: "",
-    //     partnerWeight: "",
-    //     email: "",
-    //     mobileNumber: "",
-    // });
-
     const axiosPrivate = useAxiosPrivate();
     const heightOptions = Array.from({ length: 121 }, (_, i) => 121 + i);
     const weightOptions = Array.from({ length: 102 }, (_, i) => 40 + i);
 
-
-
+    const { data } = useQuery({
+        queryKey: ["biodata", user?.email],
+        queryFn: async () => {
+            const { data } = await axiosPrivate.get(`/biodata/${user.email}`);
+            return data;
+        },
+    })
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -51,6 +37,7 @@ const EditBiodata = () => {
         const partnerWeight = form.partnerWeight.value;
         const email = form.email.value;
         const mobileNumber = form.mobileNumber.value;
+
         const data = {
             biodataType,
             name,
@@ -71,13 +58,40 @@ const EditBiodata = () => {
             email,
             mobileNumber,
         };
-        // console.log({ biodataType, name, profileImage, dob, height, weight, age, occupation, race, fathersName, mothersName, permanentDivision, presentDivision, partnerAge, partnerHeight, partnerWeight, email, mobileNumber });
-        axiosPrivate.post("/biodata", data)
-            .then((res) => {
-                console.log(res);
-            }).catch((err) => {
-                console.log(err);
-            });
+
+        toast((t) => (
+            <span className="flex">
+                Confirm submit Biodata?
+                <div className="flex items-center">
+                    <button
+                        onClick={() => {
+                            axiosPrivate.post("/biodata", data)
+                                .then((res) => {
+                                    if (res.data.upsertedId) {
+                                        toast.success("Biodata submitted successfully!");
+                                    } else if (res.data.matchedCount > 0 && res.data.acknowledged === true) {
+                                        toast.success("Biodata updated successfully!");
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.error(err);
+                                    toast.error("Failed to submit biodata!");
+                                })
+                                .finally(() => toast.dismiss(t.id));
+                        }}
+                        className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                    >
+                        Submit
+                    </button>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="px-3 py-1 ml-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </span>
+        ));
     };
 
     return (
@@ -89,7 +103,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Biodata Type</label>
                         <select
                             name="biodataType"
-                            // defaultValue={formData.biodataType}
+                            defaultValue={data?.biodataType}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -102,7 +116,7 @@ const EditBiodata = () => {
                         <input
                             type="text"
                             name="name"
-                            // defaultValue={formData.name}
+                            defaultValue={data?.name}
                             className="w-full p-2 border rounded"
                             placeholder="Enter your name"
                             required
@@ -113,7 +127,7 @@ const EditBiodata = () => {
                         <input
                             type="url"
                             name="profileImage"
-                            // defaultValue={formData.profileImage}
+                            defaultValue={data?.profileImage}
                             className="w-full p-2 border rounded"
                             placeholder="Enter profile image URL"
                             required
@@ -124,7 +138,7 @@ const EditBiodata = () => {
                         <input
                             type="date"
                             name="dob"
-                            // defaultValue={formData.dob}
+                            defaultValue={data?.dob}
                             className="w-full p-2 border rounded"
                             required
                         />
@@ -133,7 +147,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Height</label>
                         <select
                             name="height"
-                            // defaultValue={formData.height}
+                            defaultValue={data?.height}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -148,7 +162,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Weight</label>
                         <select
                             name="weight"
-                            // defaultValue={formData.weight}
+                            defaultValue={data?.weight}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -164,7 +178,7 @@ const EditBiodata = () => {
                         <input
                             type="number"
                             name="age"
-                            // defaultValue={formData.age}
+                            defaultValue={data?.age}
                             className="w-full p-2 border rounded"
                             placeholder="Enter your age"
                             required
@@ -174,7 +188,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Occupation</label>
                         <select
                             name="occupation"
-                            // defaultValue={formData.occupation}
+                            defaultValue={data?.occupation}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -190,7 +204,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Race</label>
                         <select
                             name="race"
-                            // defaultValue={formData.race}
+                            defaultValue={data?.race}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -207,7 +221,7 @@ const EditBiodata = () => {
                         <input
                             type="text"
                             name="fathersName"
-                            // defaultValue={formData.fathersName}
+                            defaultValue={data?.fathersName}
                             placeholder="Enter Father's Name"
                             className="w-full p-2 border rounded"
                             required
@@ -218,7 +232,7 @@ const EditBiodata = () => {
                         <input
                             type="text"
                             name="mothersName"
-                            // defaultValue={formData.mothersName}
+                            defaultValue={data?.mothersName}
                             placeholder="Enter Mother's Name"
                             className="w-full p-2 border rounded"
                             required
@@ -228,7 +242,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Permanent Division</label>
                         <select
                             name="permanentDivision"
-                            // defaultValue={formData.permanentDivision}
+                            defaultValue={data?.permanentDivision}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -248,7 +262,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Present Division</label>
                         <select
                             name="presentDivision"
-                            // defaultValue={formData.presentDivision}
+                            defaultValue={data?.presentDivision}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -269,7 +283,7 @@ const EditBiodata = () => {
                         <input
                             type="number"
                             name="partnerAge"
-                            // defaultValue={formData.partnerAge}
+                            defaultValue={data?.partnerAge}
                             className="w-full p-2 border rounded"
                             placeholder="Enter expected partner age"
                             required
@@ -279,7 +293,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Expected Partner Height</label>
                         <select
                             name="partnerHeight"
-                            // defaultValue={formData.partnerHeight}
+                            defaultValue={data?.partnerHeight}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -294,7 +308,7 @@ const EditBiodata = () => {
                         <label className="block mb-1 font-medium">Expected Partner Weight</label>
                         <select
                             name="partnerWeight"
-                            // defaultValue={formData.partnerWeight}
+                            defaultValue={data?.partnerWeight}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -320,7 +334,7 @@ const EditBiodata = () => {
                         <input
                             type="text"
                             name="mobileNumber"
-                            // defaultValue={formData.mobileNumber}
+                            defaultValue={data?.mobileNumber}
                             className="w-full p-2 border rounded"
                             placeholder="Enter mobile number"
                             required
@@ -336,6 +350,7 @@ const EditBiodata = () => {
                     </button>
                 </div>
             </form>
+            <Toaster></Toaster>
         </div>
     );
 };

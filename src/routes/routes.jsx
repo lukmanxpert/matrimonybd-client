@@ -66,10 +66,6 @@ export const routes = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
-                path: "/dashboard",
-                element: <Navigate to="/dashboard/edit-biodata"></Navigate>
-            },
-            {
                 path: "/dashboard/edit-biodata",
                 element: <EditBiodata></EditBiodata>
             },
@@ -84,10 +80,6 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/favourites-biodata",
                 element: <FavouriteBiodata></FavouriteBiodata>
-            },
-            {
-                path: "/dashboard",
-                element: <Navigate to="/dashboard/admin-dashboard"></Navigate>
             },
             {
                 path: "/dashboard/admin-dashboard",
