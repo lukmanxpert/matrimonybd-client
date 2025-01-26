@@ -1,49 +1,83 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
-const EditBiodata = ({ biodataId }) => {
+const EditBiodata = () => {
     const user = useAuth();
-    const [formData, setFormData] = useState({
-        biodataType: "Male",
-        name: "",
-        profileImage: "",
-        dob: "",
-        height: "",
-        weight: "",
-        age: "",
-        occupation: "",
-        race: "",
-        fathersName: "",
-        mothersName: "",
-        permanentDivision: "",
-        presentDivision: "",
-        partnerAge: "",
-        partnerHeight: "",
-        partnerWeight: "",
-        email: "",
-        mobileNumber: "",
-    });
+    // const [formData, setFormData] = useState({
+    //     biodataType: "Male",
+    //     name: "",
+    //     profileImage: "",
+    //     dob: "",
+    //     height: "",
+    //     weight: "",
+    //     age: "",
+    //     occupation: "",
+    //     race: "",
+    //     fathersName: "",
+    //     mothersName: "",
+    //     permanentDivision: "",
+    //     presentDivision: "",
+    //     partnerAge: "",
+    //     partnerHeight: "",
+    //     partnerWeight: "",
+    //     email: "",
+    //     mobileNumber: "",
+    // });
 
-    useEffect(() => {
-        axios.get(`/api/biodata/${biodataId}`).then((response) => {
-            setFormData(response.data);
-        });
-    }, [biodataId]);
-
+    const axiosPrivate = useAxiosPrivate();
     const heightOptions = Array.from({ length: 121 }, (_, i) => 121 + i);
     const weightOptions = Array.from({ length: 102 }, (_, i) => 40 + i);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`/api/biodata/${biodataId}`, formData)
-            .then(() => alert("Biodata updated successfully!"))
-            .catch((error) => alert("Error updating biodata: " + error.message));
+        const form = e.target;
+        const biodataType = form.biodataType.value;
+        const name = form.name.value;
+        const profileImage = form.profileImage.value;
+        const dob = form.dob.value;
+        const height = form.height.value;
+        const weight = form.weight.value;
+        const age = form.age.value;
+        const occupation = form.occupation.value;
+        const race = form.race.value;
+        const fathersName = form.fathersName.value;
+        const mothersName = form.mothersName.value;
+        const permanentDivision = form.permanentDivision.value;
+        const presentDivision = form.presentDivision.value;
+        const partnerAge = form.partnerAge.value;
+        const partnerHeight = form.partnerHeight.value;
+        const partnerWeight = form.partnerWeight.value;
+        const email = form.email.value;
+        const mobileNumber = form.mobileNumber.value;
+        const data = {
+            biodataType,
+            name,
+            profileImage,
+            dob,
+            height,
+            weight,
+            age,
+            occupation,
+            race,
+            fathersName,
+            mothersName,
+            permanentDivision,
+            presentDivision,
+            partnerAge,
+            partnerHeight,
+            partnerWeight,
+            email,
+            mobileNumber,
+        };
+        // console.log({ biodataType, name, profileImage, dob, height, weight, age, occupation, race, fathersName, mothersName, permanentDivision, presentDivision, partnerAge, partnerHeight, partnerWeight, email, mobileNumber });
+        axiosPrivate.post("/biodata", data)
+            .then((res) => {
+                console.log(res);
+            }).catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
@@ -55,8 +89,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Biodata Type</label>
                         <select
                             name="biodataType"
-                            defaultValue={formData.biodataType}
-                            onChange={handleChange}
+                            // defaultValue={formData.biodataType}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -69,8 +102,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="text"
                             name="name"
-                            defaultValue={formData.name}
-                            onChange={handleChange}
+                            // defaultValue={formData.name}
                             className="w-full p-2 border rounded"
                             placeholder="Enter your name"
                             required
@@ -81,8 +113,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="url"
                             name="profileImage"
-                            defaultValue={formData.profileImage}
-                            onChange={handleChange}
+                            // defaultValue={formData.profileImage}
                             className="w-full p-2 border rounded"
                             placeholder="Enter profile image URL"
                             required
@@ -93,8 +124,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="date"
                             name="dob"
-                            defaultValue={formData.dob}
-                            onChange={handleChange}
+                            // defaultValue={formData.dob}
                             className="w-full p-2 border rounded"
                             required
                         />
@@ -103,8 +133,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Height</label>
                         <select
                             name="height"
-                            value={formData.height}
-                            onChange={handleChange}
+                            // defaultValue={formData.height}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -119,8 +148,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Weight</label>
                         <select
                             name="weight"
-                            value={formData.weight}
-                            onChange={handleChange}
+                            // defaultValue={formData.weight}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -136,8 +164,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="number"
                             name="age"
-                            defaultValue={formData.age}
-                            onChange={handleChange}
+                            // defaultValue={formData.age}
                             className="w-full p-2 border rounded"
                             placeholder="Enter your age"
                             required
@@ -147,8 +174,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Occupation</label>
                         <select
                             name="occupation"
-                            defaultValue={formData.occupation}
-                            onChange={handleChange}
+                            // defaultValue={formData.occupation}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -164,8 +190,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Race</label>
                         <select
                             name="race"
-                            defaultValue={formData.race}
-                            onChange={handleChange}
+                            // defaultValue={formData.race}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -182,8 +207,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="text"
                             name="fathersName"
-                            defaultValue={formData.fathersName}
-                            onChange={handleChange}
+                            // defaultValue={formData.fathersName}
                             placeholder="Enter Father's Name"
                             className="w-full p-2 border rounded"
                             required
@@ -194,8 +218,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="text"
                             name="mothersName"
-                            defaultValue={formData.mothersName}
-                            onChange={handleChange}
+                            // defaultValue={formData.mothersName}
                             placeholder="Enter Mother's Name"
                             className="w-full p-2 border rounded"
                             required
@@ -205,8 +228,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Permanent Division</label>
                         <select
                             name="permanentDivision"
-                            defaultValue={formData.permanentDivision}
-                            onChange={handleChange}
+                            // defaultValue={formData.permanentDivision}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -226,8 +248,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Present Division</label>
                         <select
                             name="presentDivision"
-                            defaultValue={formData.presentDivision}
-                            onChange={handleChange}
+                            // defaultValue={formData.presentDivision}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -248,8 +269,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="number"
                             name="partnerAge"
-                            defaultValue={formData.partnerAge}
-                            onChange={handleChange}
+                            // defaultValue={formData.partnerAge}
                             className="w-full p-2 border rounded"
                             placeholder="Enter expected partner age"
                             required
@@ -259,8 +279,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Expected Partner Height</label>
                         <select
                             name="partnerHeight"
-                            defaultValue={formData.partnerHeight}
-                            onChange={handleChange}
+                            // defaultValue={formData.partnerHeight}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -275,8 +294,7 @@ const EditBiodata = ({ biodataId }) => {
                         <label className="block mb-1 font-medium">Expected Partner Weight</label>
                         <select
                             name="partnerWeight"
-                            defaultValue={formData.partnerWeight}
-                            onChange={handleChange}
+                            // defaultValue={formData.partnerWeight}
                             className="w-full p-2 border rounded"
                             required
                         >
@@ -302,8 +320,7 @@ const EditBiodata = ({ biodataId }) => {
                         <input
                             type="text"
                             name="mobileNumber"
-                            defaultValue={formData.mobileNumber}
-                            onChange={handleChange}
+                            // defaultValue={formData.mobileNumber}
                             className="w-full p-2 border rounded"
                             placeholder="Enter mobile number"
                             required
@@ -312,9 +329,8 @@ const EditBiodata = ({ biodataId }) => {
                 </div>
                 <div className="mt-4 flex justify-between">
                     <button
-                        type="button"
+                        type="submit"
                         className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-                        onClick={() => alert("Publish functionality pending")}
                     >
                         Save and Publish Now
                     </button>
