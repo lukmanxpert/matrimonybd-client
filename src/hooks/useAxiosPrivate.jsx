@@ -16,7 +16,7 @@ const useAxiosPrivate = () => {
     axiosPrivate.interceptors.response.use((response) => {
         return response;
     }, async (error) => {
-        console.log(error);
+        // console.log(error);
         if (error.response?.status === 401 || error.response?.status === 403) {
             localStorage.removeItem("token");
         }
