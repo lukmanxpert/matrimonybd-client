@@ -74,7 +74,7 @@ const EditBiodata = () => {
                                     }
                                 })
                                 .catch((err) => {
-                                    console.error(err);
+                                    console.error(err.message);
                                     toast.error("Failed to submit biodata!");
                                 })
                                 .finally(() => toast.dismiss(t.id));
