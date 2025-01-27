@@ -25,14 +25,30 @@ const ManageUsers = () => {
         }
     });
 
-    // const handleMakePremium = async (id) => {
-    //     try {
-    //         const { data } = await axiosPrivate.put(`/users/${id}/make-premium`);
-    //         console.log(data);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+    const handleMakePremium = async (email) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, make premium!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPrivate.put(`/users/make-premium/${email}`).then((res) => {
+                    console.log(res.data);
+                    Swal.fire({
+                        title: "Done!",
+                        icon: "success"
+                    });
+                    refetch();
+                }).catch((error) => {
+                    console.error(error);
+                });
+            }
+        });
+    };
 
     const handleMakeAdmin = async (email) => {
         Swal.fire({
@@ -102,9 +118,10 @@ const ManageUsers = () => {
                                 <td className="py-3 px-6 text-center">
                                     <div className="flex justify-center items-center space-x-4">
                                         <button
-                                            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                                            onClick={() => handleMakePremium(user.email)}
+                                            className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 ${user.isPremium === "premium" ? "cursor-not-allowed text-slate-900 bg-slate-400 hover:bg-slate-500" : ""}`} disabled={user.isPremium === "premium"}
                                         >
-                                            Make Premium
+                                            {user?.isPremium === "premium" ? "Already Premium" : "Make Premium"}
                                         </button>
                                         <button
                                             className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ${user.role === "admin" ? "cursor-not-allowed text-slate-900 bg-slate-400 hover:bg-slate-500" : ""}`}
