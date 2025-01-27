@@ -8,7 +8,7 @@ const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logOutUser, setUser } = useContext(AuthContext);
     const navigate = useNavigate()
-    const isAdmin = useIsAdmin();
+    const [isAdmin] = useIsAdmin();
     const handleLogout = () => {
         toast((t) => (
             <span className="flex items-center gap-4">

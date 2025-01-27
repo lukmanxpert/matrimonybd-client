@@ -7,8 +7,8 @@ import { Navigate } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const AdminRoutes = ({ children }) => {
     const { loading } = useContext(AuthContext)
-    const isAdmin = useIsAdmin()
-    if (loading) {
+    const [isAdmin, isPending] = useIsAdmin()
+    if (loading || isPending) {
         return <div className="h-screen flex justify-center items-center">
             <PuffLoader color="#fa005d" size={80} speedMultiplier={2} />
         </div>

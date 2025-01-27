@@ -12,7 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Dashboard = () => {
     const { user, logOutUser, setUser } = useContext(AuthContext)
     const { navigate } = useNavigate()
-    const isAdmin = useIsAdmin()
+    const [isAdmin] = useIsAdmin()
     console.log(isAdmin);
     const handleLogout = () => {
         toast((t) => (
