@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import toast, { Toaster } from "react-hot-toast";
+import useIsPremium from "../../../hooks/useIsPremium";
 
 const EditBiodata = () => {
+    const { isPremium } = useIsPremium()
     const user = useAuth();
     const axiosPrivate = useAxiosPrivate();
     const heightOptions = Array.from({ length: 121 }, (_, i) => 121 + i);
@@ -57,6 +59,7 @@ const EditBiodata = () => {
             partnerWeight,
             email,
             mobileNumber,
+            ...(isPremium && { premiumStatus: "premium" })
         };
 
         toast((t) => (

@@ -5,7 +5,7 @@ import useAxiosPrivate from "./useAxiosPrivate";
 const useIsPremium = () => {
     const auth = useAuth();
     const axiosPrivate = useAxiosPrivate();
-    const { data, isPending } = useQuery({
+    const { data: isPremium, isPending } = useQuery({
         queryKey: ["isPremium", auth?.email],
         queryFn: async () => {
             try {
@@ -16,7 +16,7 @@ const useIsPremium = () => {
             }
         }
     })
-    return { data, isPending }
+    return { isPremium, isPending }
 };
 
 export default useIsPremium;
