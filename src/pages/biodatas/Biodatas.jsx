@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Link } from "react-router-dom";
 
 const Biodatas = () => {
     const axiosPublic = useAxiosPublic();
@@ -63,7 +64,7 @@ const Biodatas = () => {
                                 <p className="text-center">Age: {biodata.age}</p>
                                 <p className="text-center">Division: {biodata.presentDivision}</p>
                                 <p className="text-center">Occupation: {biodata.occupation}</p>
-                                <button className="mt-3 w-full bg-pink-500 text-white py-2 rounded-lg">View Profile</button>
+                                <Link to={`/biodatas/${biodata.biodataId}`} className="mt-3 block text-center w-full bg-pink-500 text-white py-2 rounded-lg">View Profile</Link>
                             </div>
                         ))}
                     </div>

@@ -19,6 +19,7 @@ import AdminDashboard from "../pages/dashboard/admin/AdminDashboard";
 import ManageUsers from "../pages/dashboard/admin/ManageUsers";
 import ApprovedPremium from "../pages/dashboard/admin/ApprovedPremium";
 import ApprovedContactRequest from "../pages/dashboard/admin/ApprovedContactRequest";
+import ViewBiodatas from "../pages/biodatas/ViewBiodatas";
 // import useIsAdmin from "../hooks/useIsAdmin";
 // const isAdmin = useIsAdmin();
 export const routes = createBrowserRouter([
@@ -58,6 +59,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/register",
                 element: <Registration></Registration>
+            },
+            {
+                path: "/biodatas/:biodataId",
+                element: <PrivateRoute><ViewBiodatas></ViewBiodatas></PrivateRoute>
             }
         ]
     },
