@@ -1,7 +1,111 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
+
 const FavouriteBiodata = () => {
+    const axiosPrivate = useAxiosPrivate();
+    const auth = useAuth();
+
+    const { data: favouritesBiodata, isLoading, error, refetch } = useQuery({
+        queryKey: ["favourites"],
+        queryFn: async () => {
+            try {
+                const result = await axiosPrivate.get(`/favourites/${auth.email}`);
+                return result.data;
+            } catch (error) {
+                console.error(error);
+                throw error;
+            }
+        },
+    });
+
+    if (isLoading) {
+        return <p className="text-center mt-6 text-gray-500">Loading...</p>;
+    }
+
+    if (error) {
+        return (
+            <p className="text-center mt-6 text-red-500">
+                Something went wrong. Please try again later.
+            </p>
+        );
+    }
+    const handleDelete = async (biodataId) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const deleteData = {
+                    biodataId,
+                    authEmail: auth.email
+                }
+                try {
+                    const result = await axiosPrivate.post("/deleteFavourites", deleteData);
+                    if (result.data.acknowledged) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Delete Success!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        refetch()
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        });
+    }
+
     return (
-        <div>
-            favourite biodata
+        <div className="p-4 md:p-8">
+            {/* Header */}
+            <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center">
+                My Favourite Biodatas
+            </h1>
+
+            {favouritesBiodata?.length ? (
+                <div className="overflow-x-auto">
+                    <table className="table-auto w-full border-collapse bg-white shadow-lg rounded-lg">
+                        <thead>
+                            <tr className="bg-gray-100 text-left">
+                                <th className="px-4 py-2 font-semibold">Name</th>
+                                <th className="px-4 py-2 font-semibold">Biodata ID</th>
+                                <th className="px-4 py-2 font-semibold">Permanent Address</th>
+                                <th className="px-4 py-2 font-semibold">Occupation</th>
+                                <th className="px-4 py-2 font-semibold text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {favouritesBiodata.map((biodata) => (
+                                <tr key={biodata.biodataId} className="border-t hover:bg-gray-50">
+                                    <td className="px-4 py-2">{biodata.name}</td>
+                                    <td className="px-4 py-2">{biodata.biodataId}</td>
+                                    <td className="px-4 py-2">{biodata.permanentAddress}</td>
+                                    <td className="px-4 py-2">{biodata.occupation}</td>
+                                    <td className="px-4 py-2 text-center">
+                                        <button onClick={() => handleDelete(biodata.biodataId)} className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 transition">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            ) : (
+                <div className="mt-6 text-center">
+                    <p className="text-gray-500 italic">You have no favorite biodatas yet.</p>
+                </div>
+            )}
         </div>
     );
 };
