@@ -42,10 +42,8 @@ const PremiumMembers = () => {
 
     return (
         <div className="p-4 md:p-8">
-            {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-6">
                 <h2 className="text-2xl md:text-4xl font-bold">Premium Members</h2>
-                {/* Dropdown for sorting */}
                 <div className="mt-4 md:mt-0">
                     <label htmlFor="sortOrder" className="mr-2 text-gray-600">
                         Sort by Age:
@@ -61,8 +59,6 @@ const PremiumMembers = () => {
                     </select>
                 </div>
             </div>
-
-            {/* Premium Members Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sortedMembers.map((member) => (
                     <div
