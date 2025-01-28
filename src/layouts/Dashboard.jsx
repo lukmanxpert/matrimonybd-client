@@ -47,8 +47,8 @@ const Dashboard = () => {
         ));
     };
     return (
-        <div className="flex text-[#ebf5fd]">
-            <div className="w-1/5 min-h-screen bg-[#232E42]">
+        <div className="flex flex-col md:flex-row text-[#ebf5fd]">
+            <div className="md:w-1/5 md:min-h-screen bg-[#232E42]">
                 <div className="text-center"><h1 className="text-2xl pt-4 font-pacifico text-[#ebf5fd]">Matrimony<span className="text-red-700">BD</span></h1></div>
                 <div className="flex flex-col gap-2 justify-center items-center mt-4">
                     <img className="rounded-full h-16 w-16" src={user.photoURL} alt={user.displayName} />
@@ -93,7 +93,7 @@ const Dashboard = () => {
                 <Link to="/home" className="flex mb-2 justify-start items-center gap-2 text-lg text-[#ebf5fd] ml-4 hover:text-red-700">
                     <FaHome />Home
                 </Link>
-                <button onClick={handleLogout} className="flex justify-center items-center gap-2 text-lg text-[#ebf5fd] ml-4 hover:text-red-700">
+                <button onClick={handleLogout} className="flex justify-center items-center gap-2 py-2 text-lg text-[#ebf5fd] ml-4 hover:text-red-700">
                     <IoLogOut />Log Out
                 </button>
             </div>
