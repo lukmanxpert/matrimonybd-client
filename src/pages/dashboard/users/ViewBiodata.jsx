@@ -52,7 +52,7 @@ const ViewBiodata = () => {
                 <h1 className="text-2xl font-bold">My Biodata</h1>
                 <button
                     onClick={() => navigate("/dashboard/edit-biodata")}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                    className="px-4 py-2 bg-primary text-white rounded hover:bg-darkPrimary"
                 >
                     Edit Biodata
                 </button>
@@ -159,7 +159,7 @@ const ViewBiodata = () => {
                     Delete Biodata
                 </button> */}
                 <button
-                    className={`px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 ${biodata?.premiumStatus === "pending" && "cursor-not-allowed bg-gray-400 hover:bg-gray-500"} ${biodata?.premiumStatus === "premium" && "cursor-not-allowed"}` }
+                    className={`px-4 py-2 bg-primary text-white rounded hover:bg-darkPrimary ${biodata?.premiumStatus === "pending" && "cursor-not-allowed bg-gray-400 hover:bg-gray-500"} ${biodata?.premiumStatus === "premium" && "cursor-not-allowed"}` }
                     onClick={handleBiodataPremium}
                     disabled={biodata?.premiumStatus === "pending" || biodata?.premiumStatus === "premium"}
                 >

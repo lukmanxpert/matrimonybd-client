@@ -347,7 +347,7 @@ const EditBiodata = () => {
                 <div className="mt-4 flex justify-between">
                     <button
                         type="submit"
-                        className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                        className="px-4 py-2 bg-primary text-white rounded hover:bg-darkPrimary"
                     >
                         Save and Publish Now
                     </button>

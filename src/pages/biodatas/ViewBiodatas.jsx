@@ -5,6 +5,7 @@ import useIsPremium from "../../hooks/useIsPremium";
 import { FaHeart } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { PuffLoader } from "react-spinners";
 
 const ViewBiodatas = () => {
     const auth = useAuth()
@@ -93,9 +94,11 @@ const ViewBiodatas = () => {
                             <strong>Type:</strong> {biodata?.biodataType || "N/A"}
                         </p>
                     </div>
-
+                    {/* TODO: Need modified this */}
                     {
-                        isPending ? <div></div> : isPremium ? <div>
+                        isPending ? <div className="h-screen flex justify-center items-center">
+                            <PuffLoader color="#fa005d" size={80} speedMultiplier={2} />
+                        </div> : isPremium ? <div>
                             <h3 className="text-lg font-semibold mb-2">Contact Information</h3>
                             <p>
                                 <strong>Email:</strong> {biodata?.email || "N/A"}
@@ -105,15 +108,15 @@ const ViewBiodatas = () => {
                             </p>
                         </div> : <div>
                             <h3 className="text-lg font-semibold mb-2">Contact Information</h3>
-                            <p className="text-red-700">
-                                <strong>Email:</strong> To show, you need to be a premium user.
+                            <p className="">
+                                <strong>Email:</strong> {biodata.email}
                             </p>
-                            <p className="text-red-700">
-                                <strong>Mobile Number:</strong> To show, you need to be a premium user.
+                            <p className="">
+                                <strong>Mobile Number:</strong> {biodata.mobileNumber}
                             </p>
-                            <button className="px-4 py-2 my-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                            {/* <button className="px-4 py-2 my-2 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-darkPrimary focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                                 Request Contact Info
-                            </button>
+                            </button> */}
                         </div>
                     }
 
