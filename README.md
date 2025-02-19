@@ -23,7 +23,7 @@ Welcome to the **Matrimony Platform**, an online matchmaking application built u
 
 ## 🚀 Live Demo
 
-🌐 [Visit Live Site](#) *(https://matrimonybd-be814.web.app/home)*
+🌐 [Visit Live Site](https://matrimonybd.netlify.app/home)
 
 ---
 
