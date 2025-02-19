@@ -52,7 +52,7 @@ const PremiumMembers = () => {
                         id="sortOrder"
                         value={sortOrder}
                         onChange={(e) => setSortOrder(e.target.value)}
-                        className="border border-gray-300 rounded-md p-2 text-gray-600 focus:outline-none focus:ring focus:ring-pink-200"
+                        className="border border-gray-300 rounded-md p-2 text-gray-600 focus:outline-none"
                     >
                         <option value="ascending">Ascending</option>
                         <option value="descending">Descending</option>
@@ -80,7 +80,7 @@ const PremiumMembers = () => {
                         </p>
                         <Link
                             to={`/biodatas/${member.biodataId}`}
-                            className="mt-3 block text-center w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600 transition"
+                            className="mt-3 block text-center w-full bg-primary text-white py-2 rounded-lg hover:bg-darkPrimary transition"
                         >
                             View Profile
                         </Link>
