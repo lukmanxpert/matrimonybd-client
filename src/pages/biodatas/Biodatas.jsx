@@ -79,7 +79,7 @@ const Biodatas = () => {
                                 <p className="text-center">Occupation: {biodata.occupation}</p>
                                 <Link
                                     to={`/biodatas/${biodata.biodataId}`}
-                                    className="mt-3 block text-center w-full bg-pink-500 text-white py-2 rounded-lg"
+                                    className="mt-3 block text-center w-full bg-primary hover:bg-darkPrimary transition-all duration-300 text-white py-2 rounded-lg"
                                 >
                                     View Profile
                                 </Link>
@@ -90,7 +90,7 @@ const Biodatas = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className={`px-4 py-2 rounded-lg ${currentPage === 1 ? "bg-gray-300" : "bg-pink-500 text-white hover:bg-pink-600"}`}
+                            className={`px-4 py-2 rounded-lg ${currentPage === 1 ? "bg-gray-300" : "bg-primary text-white hover:bg-darkPrimary"}`}
                         >
                             Previous
                         </button>
@@ -100,7 +100,7 @@ const Biodatas = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className={`px-4 py-2 rounded-lg ${currentPage === totalPages ? "bg-gray-300" : "bg-pink-500 text-white hover:bg-pink-600"}`}
+                            className={`px-4 py-2 rounded-lg ${currentPage === totalPages ? "bg-gray-300" : "bg-primary text-white hover:bg-darkPrimary"}`}
                         >
                             Next
                         </button>
