@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import { PuffLoader } from "react-spinners";
 
 const Biodatas = () => {
     const axiosPublic = useAxiosPublic();
@@ -16,7 +17,7 @@ const Biodatas = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const biodatasPerPage = 6;
 
-    const { data: biodatas = [] } = useQuery({
+    const { data: biodatas = [], isPending } = useQuery({
         queryKey: ["biodatas"],
         queryFn: async () => {
             try {
@@ -57,7 +58,9 @@ const Biodatas = () => {
     const currentBiodatas = filteredBiodatas.slice(startIndex, startIndex + biodatasPerPage);
 
     return (
-        <div className="container mx-auto p-4">
+        isPending ? <div className="h-screen flex justify-center items-center">
+            <PuffLoader color="#fa005d" size={80} speedMultiplier={2} />
+        </div> : <div className="container mx-auto p-4">
             <Tabs>
                 <TabList className="flex border-b">
                     <Tab className="px-4 py-2 cursor-pointer">Biodatas</Tab>
