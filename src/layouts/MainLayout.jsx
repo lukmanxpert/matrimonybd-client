@@ -6,7 +6,7 @@ const MainLayout = () => {
     const { pathname } = useLocation()
     console.log(pathname);
     return (
-        <div>
+        <div className="dark:bg-dark">
             {pathname.includes("login") || pathname.includes("register") || pathname.includes("dashboard") ||
                 <div className="sticky top-0 z-50">
                     <Navigation></Navigation>

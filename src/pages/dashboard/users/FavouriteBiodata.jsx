@@ -66,17 +66,17 @@ const FavouriteBiodata = () => {
     }
 
     return (
-        <div className="p-4 md:p-8">
+        <div className="p-4 md:p-8 dark:bg-dark dark:text-white">
             {/* Header */}
             <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center">
                 My Favourite Biodatas
             </h1>
 
             {favouritesBiodata?.length ? (
-                <div className="overflow-x-auto">
-                    <table className="table-auto w-full border-collapse bg-white shadow-lg rounded-lg">
+                <div className="overflow-x-auto dark:bg-dark dark:text-white">
+                    <table className="table-auto w-full border-collapse bg-white dark:bg-dark dark:text-white shadow-lg rounded-lg">
                         <thead>
-                            <tr className="bg-gray-100 text-left">
+                            <tr className="bg-gray-100 dark:bg-dark text-left">
                                 <th className="px-4 py-2 font-semibold">Name</th>
                                 <th className="px-4 py-2 font-semibold">Biodata ID</th>
                                 <th className="px-4 py-2 font-semibold">Permanent Address</th>
@@ -86,7 +86,7 @@ const FavouriteBiodata = () => {
                         </thead>
                         <tbody>
                             {favouritesBiodata.map((biodata) => (
-                                <tr key={biodata.biodataId} className="border-t hover:bg-gray-50">
+                                <tr key={biodata.biodataId} className="border-t hover:bg-gray-50 dark:hover:bg-transparent">
                                     <td className="px-4 py-2">{biodata.name}</td>
                                     <td className="px-4 py-2">{biodata.biodataId}</td>
                                     <td className="px-4 py-2">{biodata.permanentAddress}</td>

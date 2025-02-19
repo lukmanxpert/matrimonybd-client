@@ -41,18 +41,18 @@ const PremiumMembers = () => {
     }
 
     return (
-        <div className="p-4 md:p-8">
+        <div className="p-4 md:p-8 dark:bg-dark">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-                <h2 className="text-2xl md:text-4xl font-bold">Premium Members</h2>
+                <h2 className="text-2xl md:text-4xl font-bold dark:text-white">Premium Members</h2>
                 <div className="mt-4 md:mt-0">
-                    <label htmlFor="sortOrder" className="mr-2 text-gray-600">
+                    <label htmlFor="sortOrder" className="mr-2 text-gray-600 dark:text-white">
                         Sort by Age:
                     </label>
                     <select
                         id="sortOrder"
                         value={sortOrder}
                         onChange={(e) => setSortOrder(e.target.value)}
-                        className="border border-gray-300 rounded-md p-2 text-gray-600 focus:outline-none"
+                        className="border border-gray-300 dark:bg-dark dark:text-white rounded-md p-2 text-gray-600 focus:outline-none"
                     >
                         <option value="ascending">Ascending</option>
                         <option value="descending">Descending</option>
@@ -63,7 +63,7 @@ const PremiumMembers = () => {
                 {sortedMembers.map((member) => (
                     <div
                         key={member.id}
-                        className="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition"
+                        className="bg-white dark:bg-dark shadow-lg rounded-lg p-4 hover:shadow-xl transition"
                     >
                         <img
                             src={member.profileImage}
@@ -71,11 +71,11 @@ const PremiumMembers = () => {
                             className="w-full h-40 object-cover rounded-md mb-4"
                         />
                         <h3 className="text-lg font-bold">{member.name}</h3>
-                        <p className="text-gray-600">Biodata ID: {member.biodataId}</p>
-                        <p className="text-gray-600">Biodata Type: {member.biodataType}</p>
-                        <p className="text-gray-600">Age: {member.age}</p>
-                        <p className="text-gray-600">Occupation: {member.occupation}</p>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 dark:text-white">Biodata ID: {member.biodataId}</p>
+                        <p className="text-gray-600 dark:text-white">Biodata Type: {member.biodataType}</p>
+                        <p className="text-gray-600 dark:text-white">Age: {member.age}</p>
+                        <p className="text-gray-600 dark:text-white">Occupation: {member.occupation}</p>
+                        <p className="text-gray-600 dark:text-white">
                             Permanent Division: {member.permanentDivision}
                         </p>
                         <Link

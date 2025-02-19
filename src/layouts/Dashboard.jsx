@@ -46,8 +46,8 @@ const Dashboard = () => {
         ));
     };
     return (
-        <div className="flex flex-col md:flex-row text-[#ebf5fd]">
-            <div className="md:w-1/5 md:min-h-screen bg-[#232E42]">
+        <div className="flex flex-col md:flex-row dark:bg-dark text-[#ebf5fd]">
+            <div className="md:w-1/5 md:min-h-screen bg-[#232E42] dark:bg-dark">
                 <div className="text-center"><h1 className="text-2xl pt-4 font-pacifico text-[#ebf5fd]">Matrimony<span className="text-darkPrimary">BD</span></h1></div>
                 <div className="flex flex-col gap-2 justify-center items-center mt-4">
                     <img className="rounded-full h-16 w-16" src={user.photoURL} alt={user.displayName} />
@@ -96,7 +96,7 @@ const Dashboard = () => {
                     <IoLogOut />Log Out
                 </button>
             </div>
-            <div className="bg-[#f2f2f2] w-full p-4 text-black">
+            <div className="bg-[#f2f2f2] dark:bg-dark w-full p-4 text-black">
                 <Outlet></Outlet>
             </div>
             <Toaster></Toaster>

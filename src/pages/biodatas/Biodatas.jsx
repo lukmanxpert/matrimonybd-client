@@ -60,7 +60,7 @@ const Biodatas = () => {
     return (
         isPending ? <div className="h-screen flex justify-center items-center">
             <PuffLoader color="#fa005d" size={80} speedMultiplier={2} />
-        </div> : <div className="container mx-auto p-4">
+        </div> : <div className="container mx-auto dark:bg-dark dark:text-white p-4">
             <Tabs>
                 <TabList className="flex border-b">
                     <Tab className="px-4 py-2 cursor-pointer">Biodatas</Tab>
@@ -90,7 +90,7 @@ const Biodatas = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className={`px-4 py-2 rounded-lg ${currentPage === 1 ? "bg-gray-300" : "bg-primary text-white hover:bg-darkPrimary"}`}
+                            className={`px-4 py-2 dark:text-black rounded-lg ${currentPage === 1 ? "bg-gray-300" : "bg-primary text-white hover:bg-darkPrimary"}`}
                         >
                             Previous
                         </button>
@@ -100,7 +100,7 @@ const Biodatas = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className={`px-4 py-2 rounded-lg ${currentPage === totalPages ? "bg-gray-300" : "bg-primary text-white hover:bg-darkPrimary"}`}
+                            className={`px-4 py-2 dark:text-black rounded-lg ${currentPage === totalPages ? "bg-gray-300" : "bg-primary text-white hover:bg-darkPrimary"}`}
                         >
                             Next
                         </button>

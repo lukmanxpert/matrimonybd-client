@@ -98,7 +98,7 @@ const EditBiodata = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-dark dark:text-white shadow-md rounded-lg">
             <h1 className="text-2xl font-bold mb-4">Edit Biodata</h1>
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -107,7 +107,7 @@ const EditBiodata = () => {
                         <select
                             name="biodataType"
                             defaultValue={data?.biodataType}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             <option value="Male">Male</option>
@@ -120,7 +120,7 @@ const EditBiodata = () => {
                             type="text"
                             name="name"
                             defaultValue={data?.name}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             placeholder="Enter your name"
                             required
                         />
@@ -131,7 +131,7 @@ const EditBiodata = () => {
                             type="url"
                             name="profileImage"
                             defaultValue={data?.profileImage}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             placeholder="Enter profile image URL"
                             required
                         />
@@ -142,7 +142,7 @@ const EditBiodata = () => {
                             type="date"
                             name="dob"
                             defaultValue={data?.dob}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         />
                     </div>
@@ -151,7 +151,7 @@ const EditBiodata = () => {
                         <select
                             name="height"
                             defaultValue={data?.height}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             {heightOptions.map((height) => (
@@ -166,7 +166,7 @@ const EditBiodata = () => {
                         <select
                             name="weight"
                             defaultValue={data?.weight}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             {weightOptions.map((weight) => (
@@ -182,7 +182,7 @@ const EditBiodata = () => {
                             type="number"
                             name="age"
                             defaultValue={data?.age}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             placeholder="Enter your age"
                             required
                         />
@@ -192,7 +192,7 @@ const EditBiodata = () => {
                         <select
                             name="occupation"
                             defaultValue={data?.occupation}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             <option value="" disabled>
@@ -208,7 +208,7 @@ const EditBiodata = () => {
                         <select
                             name="race"
                             defaultValue={data?.race}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             <option value="" disabled>
@@ -226,7 +226,7 @@ const EditBiodata = () => {
                             name="fathersName"
                             defaultValue={data?.fathersName}
                             placeholder="Enter Father's Name"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         />
                     </div>
@@ -237,7 +237,7 @@ const EditBiodata = () => {
                             name="mothersName"
                             defaultValue={data?.mothersName}
                             placeholder="Enter Mother's Name"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         />
                     </div>
@@ -246,7 +246,7 @@ const EditBiodata = () => {
                         <select
                             name="permanentDivision"
                             defaultValue={data?.permanentDivision}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             <option value="" disabled>
@@ -266,7 +266,7 @@ const EditBiodata = () => {
                         <select
                             name="presentDivision"
                             defaultValue={data?.presentDivision}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             <option value="" disabled>
@@ -287,7 +287,7 @@ const EditBiodata = () => {
                             type="number"
                             name="partnerAge"
                             defaultValue={data?.partnerAge}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             placeholder="Enter expected partner age"
                             required
                         />
@@ -297,7 +297,7 @@ const EditBiodata = () => {
                         <select
                             name="partnerHeight"
                             defaultValue={data?.partnerHeight}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             {heightOptions.map((height) => (
@@ -312,7 +312,7 @@ const EditBiodata = () => {
                         <select
                             name="partnerWeight"
                             defaultValue={data?.partnerWeight}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             required
                         >
                             {weightOptions.map((weight) => (
@@ -329,7 +329,7 @@ const EditBiodata = () => {
                             name="email"
                             value={user?.email}
                             readOnly
-                            className="w-full p-2 border rounded bg-gray-100 cursor-not-allowed"
+                            className="w-full p-2 border rounded bg-gray-100 cursor-not-allowed dark:bg-dark dark:text-white"
                         />
                     </div>
                     <div>
@@ -338,7 +338,7 @@ const EditBiodata = () => {
                             type="text"
                             name="mobileNumber"
                             defaultValue={data?.mobileNumber}
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:bg-dark dark:text-white"
                             placeholder="Enter mobile number"
                             required
                         />
