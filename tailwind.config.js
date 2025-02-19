@@ -6,6 +6,11 @@ export default {
       fontFamily: {
         pacifico: ["Pacifico"],
       },
+      colors: {
+        primary: "#E91E63",
+        darkPrimary: "#C2185B",
+        dark: "#020617"
+      }
     },
   },
   plugins: [],

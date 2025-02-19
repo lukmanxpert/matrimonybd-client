@@ -49,7 +49,7 @@ const Navigation = () => {
                 to="/home"
                 className={({ isActive }) =>
                     `px-3 py-2 mx-3 mt-2 rounded-md lg:mt-0 transition-colors duration-300 transform ${isActive
-                        ? "text-white bg-blue-600"
+                        ? "text-white bg-primary"
                         : "text-gray-700 hover:bg-gray-100"
                     }`
                 }
@@ -60,7 +60,7 @@ const Navigation = () => {
                 to="/biodatas"
                 className={({ isActive }) =>
                     `px-3 py-2 mx-3 mt-2 rounded-md lg:mt-0 transition-colors duration-300 transform ${isActive
-                        ? "text-white bg-blue-600"
+                        ? "text-white bg-primary"
                         : "text-gray-700 hover:bg-gray-100"
                     }`
                 }
@@ -71,7 +71,7 @@ const Navigation = () => {
                 to="/about-us"
                 className={({ isActive }) =>
                     `px-3 py-2 mx-3 mt-2 rounded-md lg:mt-0 transition-colors duration-300 transform ${isActive
-                        ? "text-white bg-blue-600"
+                        ? "text-white bg-primary"
                         : "text-gray-700 hover:bg-gray-100"
                     }`
                 }
@@ -82,7 +82,7 @@ const Navigation = () => {
                 to="/contact-us"
                 className={({ isActive }) =>
                     `px-3 py-2 mx-3 mt-2 rounded-md lg:mt-0 transition-colors duration-300 transform ${isActive
-                        ? "text-white bg-blue-600"
+                        ? "text-white bg-primary"
                         : "text-gray-700 hover:bg-gray-100 "
                     }`
                 }
@@ -93,7 +93,7 @@ const Navigation = () => {
                 to={`${isAdmin === "admin" ? "/dashboard/admin-dashboard" : "/dashboard/edit-biodata"}`}
                 className={({ isActive }) =>
                     `px-3 py-2 mx-3 mt-2 rounded-md lg:mt-0 transition-colors duration-300 transform ${isActive
-                        ? "text-white bg-blue-600"
+                        ? "text-white bg-primary"
                         : "text-gray-700 hover:bg-gray-100"
                     }`
                 }
@@ -109,7 +109,7 @@ const Navigation = () => {
                 <div className="lg:flex lg:items-center lg:justify-between">
                     <div className="flex items-center justify-between">
                         <NavLink to="/">
-                            <h1 className="text-2xl font-bold">MatrimonyBD</h1>
+                            <h1 className="text-2xl text-primary font-bold">MatrimonyBD</h1>
                         </NavLink>
 
                         {/* Mobile menu button */}
@@ -187,7 +187,7 @@ const Navigation = () => {
                         ) : (
                             <div className="flex justify-center items-center">
                                 <Link to="/login">
-                                    <button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                                    <button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-darkPrimary focus:outline-none focus:ring-opacity-80">
                                         Login
                                     </button>
                                 </Link>
