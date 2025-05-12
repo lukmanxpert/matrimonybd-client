@@ -38,13 +38,13 @@ const ApprovedPremium = () => {
         });
     }
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+        <div className="max-w-6xl mx-auto p-6 bg-white dark:bg-dark dark:text-white shadow-lg rounded-lg">
             <h1 className="text-2xl font-bold mb-6">Approved Premium Requests</h1>
 
             {/* Table Layout */}
-            <table className="min-w-full bg-gray-100 rounded-lg overflow-hidden">
+            <table className="min-w-full bg-gray-100 dark:bg-dark dark:text-white rounded-lg overflow-hidden">
                 <thead>
-                    <tr className="bg-gray-200 text-left text-gray-600 uppercase text-sm leading-normal">
+                    <tr className="bg-gray-200 dark:bg-dark dark:text-white text-left text-gray-600 uppercase text-sm leading-normal">
                         <th className="py-3 px-6">Name</th>
                         <th className="py-3 px-6">Email</th>
                         <th className="py-3 px-6">Biodata ID</th>
@@ -53,7 +53,7 @@ const ApprovedPremium = () => {
                 </thead>
                 <tbody className="text-gray-700 text-sm">
                     {premiumRequests?.map((request) => (
-                        <tr key={request.biodataId} className="border-b border-gray-200">
+                        <tr key={request.biodataId} className="border-b border-gray-200 dark:text-gray-300">
                             <td className="py-3 px-6">{request.name || "N/A"}</td>
                             <td className="py-3 px-6">{request.email || "N/A"}</td>
                             <td className="py-3 px-6">{request.biodataId}</td>

@@ -41,35 +41,35 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="min-h-screen p-8 bg-gray-50">
+        <div className="min-h-screen p-8 bg-gray-50 dark:bg-dark dark:text-white">
             {/* Header */}
-            <h1 className="text-3xl md:text-5xl font-bold text-center mb-12 text-gray-800">
+            <h1 className="text-3xl md:text-5xl font-bold text-center mb-12 dark:text-white text-gray-800">
                 Admin Dashboard
             </h1>
 
             {/* Statistics Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <div className="bg-white shadow-md rounded-lg p-6 text-center">
-                    <h2 className="text-2xl font-bold text-gray-800">{totalBioData}</h2>
-                    <p className="text-gray-600">Total Biodatas</p>
+                <div className="bg-white shadow-md rounded-lg p-6 text-center dark:bg-dark dark:text-white">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-white">{totalBioData}</h2>
+                    <p className="text-gray-600 dark:text-gray-300">Total Biodatas</p>
                 </div>
-                <div className="bg-white shadow-md rounded-lg p-6 text-center">
-                    <h2 className="text-2xl font-bold text-gray-800">{totalMailBioData}</h2>
-                    <p className="text-gray-600">Male Biodatas</p>
+                <div className="bg-white shadow-md rounded-lg p-6 text-center dark:bg-dark dark:text-white">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-white">{totalMailBioData}</h2>
+                    <p className="text-gray-600 dark:text-gray-300">Male Biodatas</p>
                 </div>
-                <div className="bg-white shadow-md rounded-lg p-6 text-center">
-                    <h2 className="text-2xl font-bold text-gray-800">{totalFemaleBioData}</h2>
-                    <p className="text-gray-600">Female Biodatas</p>
+                <div className="bg-white shadow-md rounded-lg p-6 text-center dark:bg-dark dark:text-white">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-white">{totalFemaleBioData}</h2>
+                    <p className="text-gray-600 dark:text-gray-300">Female Biodatas</p>
                 </div>
-                <div className="bg-white shadow-md rounded-lg p-6 text-center">
-                    <h2 className="text-2xl font-bold text-gray-800">{totalPremiumBioData}</h2>
-                    <p className="text-gray-600">Premium Biodatas</p>
+                <div className="bg-white shadow-md rounded-lg p-6 text-center dark:bg-dark dark:text-white">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-white">{totalPremiumBioData}</h2>
+                    <p className="text-gray-600 dark:text-gray-300">Premium Biodatas</p>
                 </div>
             </div>
 
             {/* Pie Chart Section */}
-            <div className="bg-white shadow-lg rounded-lg p-8">
-                <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
+            <div className="bg-white dark:bg-dark shadow-lg rounded-lg p-8">
+                <h2 className="text-2xl dark:text-white font-semibold text-center mb-6 text-gray-800">
                     Biodata Distribution
                 </h2>
                 <div className="flex justify-center">
@@ -80,13 +80,13 @@ const AdminDashboard = () => {
             </div>
 
             {/* Extra Section */}
-            <div className="mt-12 bg-blue-100 p-6 rounded-lg shadow-md text-center">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">
+            <div className="mt-12 bg-blue-100 dark:bg-dark dark:text-white p-6 rounded-lg shadow-md text-center">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
                     Did You Know?
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300">
                     Our platform has successfully helped connect over <span className="font-bold">{totalPremiumBioData}</span>{" "}
-                    premium members with their life partners. With a growing number of biodatas, 
+                    premium members with their life partners. With a growing number of biodatas,
                     we aim to make matchmaking accessible and efficient for everyone.
                 </p>
             </div>

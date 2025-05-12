@@ -82,7 +82,7 @@ const ManageUsers = () => {
     </div>
 
     return (
-        <div className="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg overflow-auto">
+        <div className="max-w-7xl mx-auto p-6 bg-white dark:bg-dark dark:text-white shadow-lg rounded-lg overflow-auto">
             {/* Page Header */}
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold">Manage Users</h1>
@@ -90,7 +90,7 @@ const ManageUsers = () => {
                 <input
                     type="text"
                     placeholder="Search by name or email"
-                    className="px-4 py-2 border rounded-lg w-64"
+                    className="px-4 py-2 dark:bg-dark border rounded-lg w-64"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -98,9 +98,9 @@ const ManageUsers = () => {
 
             {/* Users Table */}
             {filteredUsers.length > 0 ? (
-                <table className="min-w-full bg-gray-100 rounded-lg overflow-hidden">
+                <table className="min-w-full bg-gray-100 dark:bg-dark dark:text-white rounded-lg overflow-hidden">
                     <thead>
-                        <tr className="bg-gray-200 text-left text-gray-600 uppercase text-sm leading-normal">
+                        <tr className="bg-gray-200 text-left dark:bg-dark dark:text-white text-gray-600 uppercase text-sm leading-normal">
                             <th className="py-3 px-6">ID</th>
                             <th className="py-3 px-6">Name</th>
                             <th className="py-3 px-6">Email</th>
@@ -110,7 +110,7 @@ const ManageUsers = () => {
                     </thead>
                     <tbody className="text-gray-700 text-sm">
                         {filteredUsers.map((user, id) => (
-                            <tr key={id} className="border-b border-gray-200">
+                            <tr key={id} className="border-b dark:text-white border-gray-200">
                                 <td className="py-3 px-6">{id + 1}</td>
                                 <td className="py-3 px-6">{user.name}</td>
                                 <td className="py-3 px-6">{user.email}</td>
