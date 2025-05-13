@@ -9,7 +9,7 @@ const Navigation = () => {
     const { user, logOutUser, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const [isAdmin] = useIsAdmin();
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") || false);
 
     // Load dark mode preference from localStorage on initial render
     useEffect(() => {
@@ -63,6 +63,7 @@ const Navigation = () => {
     // Toggle dark mode
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
+        localStorage.setItem("darkMode", darkMode)
     };
 
     // Navigation links fragment
