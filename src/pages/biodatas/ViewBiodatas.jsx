@@ -6,13 +6,14 @@ import { FaHeart } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { PuffLoader } from "react-spinners";
+import Loading from "../../components/shared/Loading";
 
 const ViewBiodatas = () => {
     const auth = useAuth()
     const { biodataId } = useParams()
     const axiosPrivate = useAxiosPrivate()
     const { isPremium, isPending } = useIsPremium();
-    const { data: biodata } = useQuery({
+    const { data: biodata, isLoading } = useQuery({
         queryKey: ["biodata"],
         queryFn: async () => {
             try {
@@ -45,6 +46,9 @@ const ViewBiodatas = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+    if (isLoading) {
+        return <Loading />
     }
     return (
         <div className="max-w-7xl mx-auto p-6 bg-gray-100 dark:bg-slate-900 min-h-screen">

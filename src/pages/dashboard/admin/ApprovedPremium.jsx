@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Swal from "sweetalert2";
+import Loading from "../../../components/shared/Loading";
 
 const ApprovedPremium = () => {
     // Placeholder for the premium requests data
     const axiosPrivate = useAxiosPrivate();
-    const { data: premiumRequests, refetch } = useQuery({
+    const { data: premiumRequests, refetch, isLoading } = useQuery({
         queryKey: ["premiumRequests"],
         queryFn: async () => {
             const { data } = await axiosPrivate.get("/premiumRequests");
@@ -36,6 +37,9 @@ const ApprovedPremium = () => {
                     });
             }
         });
+    }
+    if (isLoading) {
+        return <Loading />
     }
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white dark:bg-dark dark:text-white shadow-lg rounded-lg">

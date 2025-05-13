@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import Loading from "../../../components/shared/Loading";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -9,7 +10,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const AdminDashboard = () => {
     const axiosPrivate = useAxiosPrivate();
 
-    const { data: bioData } = useQuery({
+    const { data: bioData, isLoading } = useQuery({
         queryKey: ["allBiodatas"],
         queryFn: async () => {
             const result = await axiosPrivate.get("/totalBiodata");
@@ -39,6 +40,10 @@ const AdminDashboard = () => {
             },
         ],
     };
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <div className="min-h-screen p-8 bg-gray-50 dark:bg-dark dark:text-white">
