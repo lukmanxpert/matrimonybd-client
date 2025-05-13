@@ -47,12 +47,12 @@ const ViewBiodatas = () => {
         }
     }
     return (
-        <div className="max-w-7xl mx-auto p-6 bg-gray-100 min-h-screen">
+        <div className="max-w-7xl mx-auto p-6 bg-gray-100 dark:bg-slate-900 min-h-screen">
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-bold">My Biodata</h1>
+                <h1 className="text-2xl font-bold dark:text-white">View Biodata</h1>
                 <button onClick={handleAddToFavourites} className="text-2xl text-red-600 hover:scale-125 transition" title="add to favourite"><FaHeart /></button>
             </div>
-            <div className="bg-white p-6 shadow rounded-lg">
+            <div className="bg-white dark:bg-slate-900 dark:text-white p-6 shadow rounded-lg">
                 <h2 className="text-xl font-semibold mb-4">Biodata Details</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
