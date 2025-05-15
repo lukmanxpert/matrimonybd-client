@@ -35,12 +35,14 @@ const ContactUs = () => {
     return (
         <div className="bg-gray-100 dark:bg-dark min-h-screen">
             {/* Header Section */}
-            <header className="bg-blue-600 dark:bg-dark text-white py-16 text-center">
+            <header className="text-black dark:bg-dark dark:text-white py-16 text-center">
                 <h1 className="text-4xl font-bold">Contact Us</h1>
                 <p className="mt-4 text-lg">
                     Have questions? We’re here to help. Reach out to us anytime.
                 </p>
             </header>
+
+            <div className="border mx-10 lg:mx-20 border-primary"></div>
 
             {/* Contact Form Section */}
             <section className="max-w-7xl mx-auto py-16 px-6">
@@ -72,7 +74,7 @@ const ContactUs = () => {
                     </div>
                     <button
                         type="button"
-                        className="w-full py-3 bg-blue-600 dark:bg-dark dark:border-white dark:border-2 text-white font-semibold rounded-lg hover:bg-blue-700"
+                        className="w-full py-3 text-primary border-2 border-primary transition hover:bg-primary hover:text-white font-semibold rounded-lg"
                     >
                         Send Message
                     </button>

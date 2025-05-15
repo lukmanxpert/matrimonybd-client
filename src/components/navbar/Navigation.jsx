@@ -235,7 +235,7 @@ const Navigation = () => {
                                 <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                                     <img
                                         title={user?.displayName}
-                                        src={user?.photoURL ? user.photoURL : "https://via.placeholder.com/150"}
+                                        src={user?.photoURL ? user.photoURL : "https://www.gravatar.com/avatar/?d=mp&f=y"}
                                         className="object-cover w-full h-full"
                                         alt="avatar"
                                     />

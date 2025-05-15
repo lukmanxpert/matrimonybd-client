@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { PuffLoader } from "react-spinners";
 
 const Biodatas = () => {
+    const [active, setActive] = useState("biodatas")
     const axiosPublic = useAxiosPublic();
     const [filters, setFilters] = useState({
         ageFrom: "",
@@ -63,8 +64,8 @@ const Biodatas = () => {
         </div> : <div className="container mx-auto dark:bg-dark dark:text-white p-4">
             <Tabs>
                 <TabList className="flex border-b">
-                    <Tab className="px-4 py-2 cursor-pointer">Biodatas</Tab>
-                    <Tab className="px-4 py-2 cursor-pointer">Filter</Tab>
+                    <Tab onClick={() => setActive("biodatas")} className={`px-4 py-2 cursor-pointer ${active === "biodatas" && "rounded bg-primary text-white"} transition`}>Biodatas</Tab>
+                    <Tab onClick={() => setActive("filter")} className={`px-4 py-2 cursor-pointer ${active === "filter" && "rounded bg-primary text-white"} transition`}>Filter</Tab>
                 </TabList>
 
                 <TabPanel>
@@ -108,16 +109,16 @@ const Biodatas = () => {
                 </TabPanel>
 
                 <TabPanel>
-                    <div className="p-4 border rounded-lg shadow-md">
+                    <div className="p-4 border rounded-lg shadow-md my-5">
                         <label>Age Range:</label>
-                        <div className="flex gap-2">
+                        <div className="flex my-1 gap-2">
                             <input
                                 type="number"
                                 name="ageFrom"
                                 placeholder="From"
                                 value={filters.ageFrom}
                                 onChange={handleFilterChange}
-                                className="w-1/2 p-2 border rounded"
+                                className="w-1/2 p-2 dark:bg-slate-950 dark:text-white border rounded"
                             />
                             <input
                                 type="number"
@@ -125,7 +126,7 @@ const Biodatas = () => {
                                 placeholder="To"
                                 value={filters.ageTo}
                                 onChange={handleFilterChange}
-                                className="w-1/2 p-2 border rounded"
+                                className="w-1/2 p-2 dark:bg-slate-950 dark:text-white border rounded"
                             />
                         </div>
 
@@ -133,7 +134,7 @@ const Biodatas = () => {
                         <select
                             name="biodataType"
                             onChange={handleFilterChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full my-1 dark:bg-slate-950 dark:text-white p-2 border rounded"
                         >
                             <option value="">Select</option>
                             <option value="Male">Male</option>
@@ -144,7 +145,7 @@ const Biodatas = () => {
                         <select
                             name="presentDivision"
                             onChange={handleFilterChange}
-                            className="w-full p-2 border rounded"
+                            className="w-full my-1 dark:bg-slate-950 dark:text-white p-2 border rounded"
                         >
                             <option value="">Select</option>
                             <option value="Dhaka">Dhaka</option>
@@ -158,7 +159,7 @@ const Biodatas = () => {
 
                         <button
                             onClick={handleReset}
-                            className="mt-4 w-full bg-gray-500 text-white py-2 rounded-lg"
+                            className="mt-4 w-full bg-white dark:bg-slate-950 text-primary border border-primary font-bold hover:bg-primary dark:hover:bg-primary hover:text-white transition py-2 rounded-lg"
                         >
                             Reset Filters
                         </button>

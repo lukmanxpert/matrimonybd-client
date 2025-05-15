@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const AboutUs = () => {
     const teamMembers = [
         { id: 1, name: "John Doe", role: "Founder & CEO", image: "https://i.ibb.co.com/zXKxW8N/images-2.jpg" },
@@ -25,13 +27,13 @@ const AboutUs = () => {
     return (
         <div className="bg-gray-100 dark:bg-dark">
             {/* Header Section */}
-            <header className="bg-blue-600 dark:bg-dark text-white py-16 text-center">
+            <header className="text-black dark:bg-dark dark:text-white py-16 text-center">
                 <h1 className="text-4xl font-bold">About Us</h1>
                 <p className="mt-4 text-lg">
                     Connecting people to build meaningful relationships.
                 </p>
             </header>
-
+            <div className="border mx-10 lg:mx-20 border-primary"></div>
             {/* Mission and Vision Section */}
             <section className="max-w-7xl mx-auto py-16 px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -96,16 +98,16 @@ const AboutUs = () => {
             </section>
 
             {/* Call to Action Section */}
-            <section className="bg-blue-600 dark:bg-dark text-white py-16">
+            <section className="text-black dark:bg-dark dark:text-white py-16">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-3xl font-bold mb-4">Ready to Find Your Match?</h2>
                     <p className="text-lg mb-8">
                         Join our platform today and start your journey towards a meaningful
                         relationship.
                     </p>
-                    <button className="px-6 py-3 bg-white text-blue-600 dark:bg-transparent dark:border-2 dark:border-white dark:text-white font-semibold rounded-lg hover:bg-gray-200">
+                    <Link to={"/biodatas"} className="px-6 text-primary py-3 border border-primary transition hover:bg-primary hover:text-white bg-transparent font-semibold rounded-lg">
                         Join Now
-                    </button>
+                    </Link>
                 </div>
             </section>
         </div>
