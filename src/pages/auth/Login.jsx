@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import SocialLogin from "../../components/shared/SocialLogin";
+import authImage from "../../assets/authentication.jpg"
+
 const Login = () => {
     const { setUser, loginUserWithEmail } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -32,7 +34,7 @@ const Login = () => {
             className="min-h-screen bg-cover bg-center flex items-center justify-center"
             style={{
                 backgroundImage:
-                    "url('https://i.ibb.co.com/0ZpzgR5/pexels-i-brahim-hakki-ucman-174353-3342697.jpg')",
+                    `url(${authImage})`,
             }}
         >
             <div className="bg-white bg-opacity-10 backdrop-blur-none p-6 rounded-md shadow-lg w-full max-w-md">

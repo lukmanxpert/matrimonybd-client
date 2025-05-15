@@ -113,13 +113,13 @@ const ContactUs = () => {
             </section>
 
             {/* Call to Action Section */}
-            <section className="bg-blue-600 dark:bg-dark dark:text-white text-white py-16">
+            <section className="text-black dark:bg-dar dark:text-white py-16">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
                     <p className="text-lg mb-8">
                         Don’t hesitate to reach out to us. Our team is here to help.
                     </p>
-                    <button className="px-6 py-3 bg-white text-blue-600 dark:bg-transparent dark:border-2 dark:text-white font-semibold rounded-lg hover:bg-gray-200">
+                    <button className="px-6 py-3 border-2 border-primary hover:bg-primary hover:text-white text-primary dark:border-2 dark:text-white font-semibold rounded-lg transition">
                         Contact Support
                     </button>
                 </div>

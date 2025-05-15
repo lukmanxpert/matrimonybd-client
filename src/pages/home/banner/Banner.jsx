@@ -2,12 +2,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Link } from 'react-router-dom'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import image1 from "../../../assets/banner1.jpg"
 import image2 from "../../../assets/banner2.jpg"
 import image3 from "../../../assets/banner3.jpg"
+import useAuth from '../../../hooks/useAuth';
 
 const Banner = () => {
+    const user = useAuth()
     return (
         <div>
             <Swiper
@@ -36,6 +39,8 @@ const Banner = () => {
                             <div className="text-center text-white">
                                 <h2 className="text-4xl font-bold">Celebrate Your Love</h2>
                                 <p className="mt-2 text-lg">Make every moment unforgettable with our perfect engagement ideas.</p>
+                                <div className='mt-8'></div>
+                                <Link to={user ? "/biodatas" : "/login"} className=' text-white border-2 border-white hover:bg-primary hover:border-primary hover:font-bold transition rounded py-2 px-6 font-semibold'>Get Started</Link>
                             </div>
                         </div>
                     </div>
@@ -53,6 +58,8 @@ const Banner = () => {
                             <div className="text-center text-white">
                                 <h2 className="text-4xl font-bold">The Perfect Proposal</h2>
                                 <p className="mt-2 text-lg">Witness a timeless moment of love and commitment.</p>
+                                <div className='mt-8'></div>
+                                <Link to={user ? "/biodatas" : "/login"} className=' text-white border-2 border-white hover:bg-primary hover:border-primary hover:font-bold transition rounded py-2 px-6 font-semibold'>Find a Match</Link>
                             </div>
                         </div>
                     </div>
@@ -70,6 +77,8 @@ const Banner = () => {
                             <div className="text-center text-white">
                                 <h2 className="text-4xl font-bold">Your Dream Wedding</h2>
                                 <p className="mt-2 text-lg">Turn your dream day into a reality with our expert planning.</p>
+                                <div className='mt-8'></div>
+                                <Link to={"/contact-us"} className=' text-white border-2 border-white hover:bg-primary hover:border-primary hover:font-bold transition rounded py-2 px-6 font-semibold'>Get Support</Link>
                             </div>
                         </div>
                     </div>
