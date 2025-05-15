@@ -4,7 +4,6 @@ import Footer from "../components/footer/Footer";
 
 const MainLayout = () => {
     const { pathname } = useLocation()
-    console.log(pathname);
     return (
         <div className="dark:bg-dark">
             {pathname.includes("login") || pathname.includes("register") || pathname.includes("dashboard") ||

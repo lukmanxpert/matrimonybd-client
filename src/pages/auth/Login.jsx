@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FaLock, FaUser } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import SocialLogin from "../../components/shared/SocialLogin";
@@ -9,7 +9,7 @@ import authImage from "../../assets/authentication.jpg"
 const Login = () => {
     const { setUser, loginUserWithEmail } = useContext(AuthContext)
     const navigate = useNavigate()
-    const { state } = useLocation();
+    // const { state } = useLocation();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,7 +24,7 @@ const Login = () => {
                 const user = userCredential.user;
                 setUser(user)
                 toast.success("Successfully logged in")
-                navigate(state ? state : "/")
+                navigate("/")
             }).catch((error) => {
                 toast.error(error.message)
             })

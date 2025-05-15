@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import SocialLogin from "../../components/shared/SocialLogin";
@@ -10,7 +10,7 @@ const Registration = () => {
     const axiosPublic = useAxiosPublic()
     const { setUser, signUpWithEmail, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
-    const { state } = useLocation();
+    // const { state } = useLocation();
     const [error, setError] = useState("")
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
     const handleSubmit = event => {
@@ -48,7 +48,7 @@ const Registration = () => {
                         console.log("profile updated");
                     }).catch((error) =>
                         console.log(error))
-                navigate(state ? state : "/")
+                navigate("/")
                 toast.success("Successfully Logged In")
             }).catch((error) => {
                 toast.error(error.message)

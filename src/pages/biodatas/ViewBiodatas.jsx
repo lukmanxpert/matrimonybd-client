@@ -7,8 +7,12 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { PuffLoader } from "react-spinners";
 import Loading from "../../components/shared/Loading";
+import useIsAdmin from "../../hooks/useIsAdmin"
+import toast from "react-hot-toast";
 
 const ViewBiodatas = () => {
+    const isAdmin = useIsAdmin()
+    console.log(isAdmin);
     const auth = useAuth()
     const { biodataId } = useParams()
     const axiosPrivate = useAxiosPrivate()
@@ -25,6 +29,9 @@ const ViewBiodatas = () => {
         }
     })
     const handleAddToFavourites = async () => {
+        if (isAdmin[0] === "admin") {
+            return toast.error("Admin can't add to favourite")
+        }
         const favouriteData = {
             name: biodata?.name,
             biodataId: biodata?.biodataId,

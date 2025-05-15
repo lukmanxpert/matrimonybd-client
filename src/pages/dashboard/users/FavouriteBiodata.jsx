@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const FavouriteBiodata = () => {
     const axiosPrivate = useAxiosPrivate();
@@ -92,9 +93,14 @@ const FavouriteBiodata = () => {
                                     <td className="px-4 py-2">{biodata.permanentAddress}</td>
                                     <td className="px-4 py-2">{biodata.occupation}</td>
                                     <td className="px-4 py-2 text-center">
-                                        <button onClick={() => handleDelete(biodata.biodataId)} className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 transition">
-                                            Delete
-                                        </button>
+                                        <div className="flex gap-2">
+                                            <Link to={`/biodatas/${biodata.biodataId}`} className="bg-primary text-white px-4 py-1 rounded-md hover:bg-red-600 transition">
+                                                View Biodata
+                                            </Link>
+                                            <button onClick={() => handleDelete(biodata.biodataId)} className="bg-red-700 text-white px-4 py-1 rounded-md hover:bg-red-600 transition">
+                                                Delete
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}

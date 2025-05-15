@@ -43,9 +43,7 @@ const ViewBiodata = () => {
                     })
             }
         });
-
     }
-    console.log(biodata?.premiumStatus)
     return (
         <div className="max-w-7xl mx-auto p-6 dark:bg-dark dark:text-white bg-gray-100 min-h-screen">
             <div className="flex justify-between items-center mb-6">
@@ -159,7 +157,7 @@ const ViewBiodata = () => {
                     Delete Biodata
                 </button> */}
                 <button
-                    className={`px-4 py-2 bg-primary text-white rounded hover:bg-darkPrimary ${biodata?.premiumStatus === "pending" && "cursor-not-allowed bg-gray-400 hover:bg-gray-500"} ${biodata?.premiumStatus === "premium" && "cursor-not-allowed"}` }
+                    className={`px-4 py-2 bg-primary text-white rounded hover:bg-darkPrimary ${biodata?.premiumStatus === "pending" && "cursor-not-allowed bg-gray-400 hover:bg-gray-500"} ${biodata?.premiumStatus === "premium" && "cursor-not-allowed"}`}
                     onClick={handleBiodataPremium}
                     disabled={biodata?.premiumStatus === "pending" || biodata?.premiumStatus === "premium"}
                 >

@@ -12,7 +12,6 @@ const Dashboard = () => {
     const { user, logOutUser, setUser } = useContext(AuthContext)
     const { navigate } = useNavigate()
     const [isAdmin] = useIsAdmin()
-    console.log(isAdmin);
     const handleLogout = () => {
         toast((t) => (
             <span className="flex items-center gap-4">
@@ -46,26 +45,26 @@ const Dashboard = () => {
         ));
     };
     return (
-        <div className="flex flex-col md:flex-row dark:bg-dark text-[#ebf5fd]">
-            <div className="md:w-1/5 md:min-h-screen bg-[#232E42] dark:bg-dark">
-                <div className="text-center"><h1 className="text-2xl pt-4 font-pacifico text-[#ebf5fd]">Matrimony<span className="text-darkPrimary">BD</span></h1></div>
+        <div className="flex flex-col md:flex-row dark:bg-dark">
+            <div className="md:w-1/5 md:min-h-screen bg-white text-black dark:text-white dark:bg-dark">
+                <div className="text-center"><h1 className="text-2xl pt-4 font-pacifico text-black dark:text-white">Matrimony<span className="text-primary">BD</span></h1></div>
                 <div className="flex flex-col gap-2 justify-center items-center mt-4">
                     <img className="rounded-full h-16 w-16" src={user.photoURL} alt={user.displayName} />
-                    <h1 className="text-xl text-[#ebf5fd]">{user?.displayName}</h1>
+                    <h1 className="text-xl font-bold text-black dark:text-white">{user?.displayName}</h1>
                 </div>
-                <div className="border-2 border-red-700 px-6 my-6"></div>
+                <div className="border-2 border-primary px-6 my-6"></div>
                 <div className="">
                     {
                         isAdmin === "admin" ?
                             <ul className="flex flex-col gap-6 ml-4">
                                 <li >
-                                    <NavLink to="/dashboard/admin-dashboard" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><RiAdminFill /> Admin Dashboard</NavLink>
+                                    <NavLink to="/dashboard/admin-dashboard" className="flex items-center gap-2 justify-start text-lg py-1 px-4 hover:bg-primary  hover:text-white hover:rounded hover:mr-3 transition"><RiAdminFill /> Admin Dashboard</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/manage-users" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><FaUsers ></FaUsers> Manage Users</NavLink>
+                                    <NavLink to="/dashboard/manage-users" className="flex items-center gap-2 justify-start text-lg py-1 px-4 hover:bg-primary  hover:text-white hover:rounded hover:mr-3 transition"><FaUsers ></FaUsers> Manage Users</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/approved-premium" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><MdGroupRemove /> Approved Premium</NavLink>
+                                    <NavLink to="/dashboard/approved-premium" className="flex items-center gap-2 justify-start text-lg py-1 px-4 hover:bg-primary  hover:text-white hover:rounded hover:mr-3 transition"><MdGroupRemove /> Approved Premium</NavLink>
                                 </li>
                                 {/* <li>
                                     <NavLink to="/dashboard/approved-contact-request" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><FaCodePullRequest /> Approved Contact Request</NavLink>
@@ -73,26 +72,26 @@ const Dashboard = () => {
                             </ul>
                             : <ul className="flex flex-col gap-6 ml-4">
                                 <li >
-                                    <NavLink to="/dashboard/edit-biodata" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><FaEdit /> Edit Biodata</NavLink>
+                                    <NavLink to="/dashboard/edit-biodata" className="flex items-center gap-2 justify-start text-lg py-1 px-4 hover:bg-primary  hover:text-white hover:rounded hover:mr-3 transition"><FaEdit /> Edit Biodata</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/view-biodata" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><FaDatabase></FaDatabase> View Biodata</NavLink>
+                                    <NavLink to="/dashboard/view-biodata" className="flex items-center gap-2 justify-start text-lg py-1 px-4 hover:bg-primary  hover:text-white hover:rounded hover:mr-3 transition"><FaDatabase></FaDatabase> View Biodata</NavLink>
                                 </li>
                                 {/* <li>
                                     <NavLink to="/dashboard/my-contact-request" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><RiContactsFill /> My Contact Request</NavLink>
                                 </li> */}
                                 <li>
-                                    <NavLink to="/dashboard/favourites-biodata" className="flex items-center gap-2 justify-start text-lg hover:text-darkPrimary"><MdFavorite /> Favourite&apos;s Biodata</NavLink>
+                                    <NavLink to="/dashboard/favourites-biodata" className="flex items-center gap-2 justify-start text-lg py-1 px-4 hover:bg-primary  hover:text-white hover:rounded hover:mr-3 transition"><MdFavorite /> Favourite&apos;s Biodata</NavLink>
                                 </li>
                             </ul>
                     }
 
                 </div>
                 <div className="border-2 border-red-700 px-6 my-6"></div>
-                <Link to="/home" className="flex mb-2 justify-start items-center gap-2 text-lg text-[#ebf5fd] ml-4 hover:text-darkPrimary">
+                <Link to="/home" className="flex mb-2 justify-start items-center gap-2 text-lg text-black dark:text-white py-1 px-4 hover:text-white ml-4 hover:bg-primary hover:rounded hover:mr-3 transition">
                     <FaHome />Home
                 </Link>
-                <button onClick={handleLogout} className="flex justify-center items-center gap-2 py-2 text-lg text-[#ebf5fd] ml-4 hover:text-darkPrimary">
+                <button onClick={handleLogout} className="flex justify-center items-center gap-2 text-lg text-black dark:text-white py-1 px-4 transition ml-4 hover:scale-110 hover:text-red-700">
                     <IoLogOut />Log Out
                 </button>
             </div>
