@@ -42,7 +42,7 @@ const ApprovedPremium = () => {
         return <Loading />
     }
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-white dark:bg-dark dark:text-white shadow-lg rounded-lg">
+        <div className="max-w-6xl overflow-x-auto mx-auto p-6 bg-white dark:bg-dark dark:text-white shadow-lg rounded-lg">
             <h1 className="text-2xl font-bold mb-6">Approved Premium Requests</h1>
 
             {/* Table Layout */}
