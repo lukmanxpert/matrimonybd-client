@@ -124,7 +124,7 @@ const ManageUsers = () => {
                                             {user?.isPremium === "premium" ? "Already Premium" : "Make Premium"}
                                         </button>
                                         <button
-                                            className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ${user.role === "admin" ? "cursor-not-allowed text-slate-900 bg-slate-400 hover:bg-slate-500" : ""}`}
+                                            className={`px-4 py-2 bg-primary text-white rounded hover:bg-darkPrimary ${user.role === "admin" ? "cursor-not-allowed text-slate-900 bg-slate-400 hover:bg-slate-500" : ""}`}
                                             onClick={() => handleMakeAdmin(user.email)}
                                             disabled={user.role === "admin"}
                                         >
