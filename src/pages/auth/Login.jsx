@@ -1,14 +1,17 @@
-import { useContext } from "react";
-import { FaLock, FaUser } from "react-icons/fa";
+import { useContext, useState } from "react";
+import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import SocialLogin from "../../components/shared/SocialLogin";
 import authImage from "../../assets/authentication.jpg"
+import { IoMdEye } from "react-icons/io";
+import { IoMdEyeOff } from "react-icons/io";
 
 const Login = () => {
     const { setUser, loginUserWithEmail } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
     // const { state } = useLocation();
 
     const handleSubmit = (event) => {
@@ -72,15 +75,17 @@ const Login = () => {
                         </label>
                         <div className="relative mt-1">
                             <input
-                                type="password"
+                                type={`${showPassword ? "text" : "password"}`}
                                 name="password"
                                 id="password"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your password"
                             />
-                            <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500">
-                                <FaLock />
-                            </span>
+                            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500">
+                                {
+                                    showPassword ? <IoMdEyeOff /> : <IoMdEye />
+                                }
+                            </button>
                         </div>
                     </div>
 

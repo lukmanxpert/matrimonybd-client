@@ -10,8 +10,9 @@ const Home = () => {
             <Banner />
             <PremiumMembers />
             <HowItWorks />
-            <WhyChooseUs />
             <SuccessCounter />
+            {/* <SuccessStory /> */}
+            <WhyChooseUs />
         </div>
     );
 };

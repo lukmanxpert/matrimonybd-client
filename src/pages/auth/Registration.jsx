@@ -5,11 +5,14 @@ import toast, { Toaster } from "react-hot-toast";
 import SocialLogin from "../../components/shared/SocialLogin";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import authImage from "../../assets/authentication.jpg"
+import { IoMdEyeOff } from "react-icons/io";
+import { IoMdEye } from "react-icons/io";
 
 const Registration = () => {
     const axiosPublic = useAxiosPublic()
     const { setUser, signUpWithEmail, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
     // const { state } = useLocation();
     const [error, setError] = useState("")
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
@@ -137,14 +140,19 @@ const Registration = () => {
                         </label>
                         <div className="relative mt-1">
                             <input
-                                type="password"
+                                type={`${showPassword ? "text" : "password"}`}
                                 name="password"
                                 id="password"
                                 required
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
                                 placeholder="Enter your password"
                             />
-                            <p className="text-red-500 text-xs py-1">{error && error}</p>
+                            {error && <p className="text-red-500 text-xs py-1">{error && error}</p>}
+                            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500">
+                                {
+                                    showPassword ? <IoMdEyeOff /> : <IoMdEye />
+                                }
+                            </button>
                         </div>
                     </div>
 

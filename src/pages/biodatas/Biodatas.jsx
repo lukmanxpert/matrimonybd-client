@@ -58,6 +58,12 @@ const Biodatas = () => {
     const startIndex = (currentPage - 1) * biodatasPerPage;
     const currentBiodatas = filteredBiodatas.slice(startIndex, startIndex + biodatasPerPage);
 
+    if (!biodatas) {
+        return <div>
+            <h1>No Biodata Found</h1>
+        </div>
+    }
+
     return (
         isPending ? <div className="h-screen flex justify-center items-center">
             <PuffLoader color="#fa005d" size={80} speedMultiplier={2} />
