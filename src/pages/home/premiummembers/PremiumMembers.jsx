@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Loading from "../../../components/shared/Loading";
 
 const PremiumMembers = () => {
     const axiosPublic = useAxiosPublic();
@@ -29,7 +30,7 @@ const PremiumMembers = () => {
         : [];
 
     if (isLoading) {
-        return <p className="text-center mt-6 text-gray-500">Loading...</p>;
+        return <Loading />;
     }
 
     if (error) {
@@ -63,14 +64,14 @@ const PremiumMembers = () => {
                 {sortedMembers.map((member, index) => (
                     <div
                         key={index}
-                        className="bg-white dark:bg-dark shadow-lg rounded-lg p-4 hover:shadow-xl transition"
+                        className="bg-white dark:border dark:border-slate-800 dark:bg-dark  shadow-lg rounded-lg p-4 hover:shadow-xl transition"
                     >
                         <img
                             src={member.profileImage}
                             alt={`${member.name}'s profile`}
                             className="w-full h-40 object-cover rounded-md mb-4"
                         />
-                        <h3 className="text-lg font-bold">{member.name}</h3>
+                        <h3 className="text-lg dark:text-white font-bold">{member.name}</h3>
                         <p className="text-gray-600 dark:text-white">Biodata ID: {member.biodataId}</p>
                         <p className="text-gray-600 dark:text-white">Biodata Type: {member.biodataType}</p>
                         <p className="text-gray-600 dark:text-white">Age: {member.age}</p>

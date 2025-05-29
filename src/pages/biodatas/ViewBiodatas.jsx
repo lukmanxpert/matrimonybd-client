@@ -9,15 +9,16 @@ import { PuffLoader } from "react-spinners";
 import Loading from "../../components/shared/Loading";
 import useIsAdmin from "../../hooks/useIsAdmin"
 import toast from "react-hot-toast";
+import SimilarBiodata from "./SimilarBiodata";
+import { useEffect } from "react";
 
 const ViewBiodatas = () => {
     const isAdmin = useIsAdmin()
-    console.log(isAdmin);
     const auth = useAuth()
     const { biodataId } = useParams()
     const axiosPrivate = useAxiosPrivate()
     const { isPremium, isPending } = useIsPremium();
-    const { data: biodata, isLoading } = useQuery({
+    const { data: biodata, isLoading, refetch } = useQuery({
         queryKey: ["biodata"],
         queryFn: async () => {
             try {
@@ -28,6 +29,9 @@ const ViewBiodatas = () => {
             }
         }
     })
+    useEffect(() => {
+        refetch();
+    }, [biodataId, refetch])
     const handleAddToFavourites = async () => {
         if (isAdmin[0] === "admin") {
             return toast.error("Admin can't add to favourite")
@@ -57,8 +61,16 @@ const ViewBiodatas = () => {
     if (isLoading) {
         return <Loading />
     }
+    if (!biodata.name) {
+        return (
+            <div className="h-screen flex justify-center items-center">
+                <p className="text-red-500">Biodata not found</p>
+            </div>
+        );
+
+    }
     return (
-        <div className="max-w-7xl mx-auto p-6 bg-gray-100 dark:bg-slate-900 min-h-screen">
+        <div className="max-w-7xl mx-auto p-6  dark:bg-slate-900 min-h-screen">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold dark:text-white">View Biodata</h1>
                 <button onClick={handleAddToFavourites} className="text-2xl text-red-600 hover:scale-125 transition" title="add to favourite"><FaHeart /></button>
@@ -170,6 +182,9 @@ const ViewBiodatas = () => {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div>
+                <SimilarBiodata biodataType={biodata.biodataType} biodataId={biodata._id} />
             </div>
         </div>
     );
