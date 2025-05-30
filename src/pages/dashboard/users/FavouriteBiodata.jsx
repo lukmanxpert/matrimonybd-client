@@ -8,12 +8,13 @@ const FavouriteBiodata = () => {
     const axiosPrivate = useAxiosPrivate();
     const auth = useAuth();
 
+    // fetch favourite biodatas
     const { data: favouritesBiodata, isLoading, error, refetch } = useQuery({
         queryKey: ["favourites"],
         queryFn: async () => {
             try {
-                const result = await axiosPrivate.get(`/favourites/${auth.email}`);
-                return result.data;
+                const result = await axiosPrivate.get("/api/users/favouriteBiodatas");
+                return result.data.data;
             } catch (error) {
                 console.error(error);
                 throw error;
@@ -21,17 +22,6 @@ const FavouriteBiodata = () => {
         },
     });
 
-    if (isLoading) {
-        return <p className="text-center mt-6 text-gray-500">Loading...</p>;
-    }
-
-    if (error) {
-        return (
-            <p className="text-center mt-6 text-red-500">
-                Something went wrong. Please try again later.
-            </p>
-        );
-    }
     const handleDelete = async (biodataId) => {
         Swal.fire({
             title: "Are you sure?",
@@ -64,6 +54,18 @@ const FavouriteBiodata = () => {
                 }
             }
         });
+    }
+
+    if (isLoading) {
+        return <p className="text-center mt-6 text-gray-500">Loading...</p>;
+    }
+
+    if (error) {
+        return (
+            <p className="text-center mt-6 text-red-500">
+                Something went wrong. Please try again later.
+            </p>
+        );
     }
 
     return (

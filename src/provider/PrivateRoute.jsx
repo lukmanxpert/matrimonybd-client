@@ -8,7 +8,9 @@ const PrivateRoute = ({ children }) => {
     const { pathname } = useLocation()
     const { user, loading } = useContext(AuthContext);
     if (loading) {
-        return <Loading />
+        return <div className="flex justify-center items-center h-screen">
+            <Loading />
+        </div>
     }
     if (user) {
         return children
