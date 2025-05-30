@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const FavouriteBiodata = () => {
     const axiosPrivate = useAxiosPrivate();
-    const auth = useAuth();
 
     // fetch favourite biodatas
     const { data: favouritesBiodata, isLoading, error, refetch } = useQuery({
@@ -34,16 +32,15 @@ const FavouriteBiodata = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const deleteData = {
-                    biodataId,
-                    authEmail: auth.email
+                    biodataId
                 }
                 try {
-                    const result = await axiosPrivate.post("/deleteFavourites", deleteData);
-                    if (result.data.acknowledged) {
+                    const result = await axiosPrivate.put("/api/users/deleteFavouriteBiodata", deleteData);
+                    if (result.data.success) {
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
-                            title: "Delete Success!",
+                            title: result.data.message,
                             showConfirmButton: false,
                             timer: 1500
                         });
