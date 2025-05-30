@@ -17,7 +17,6 @@ const SimilarBiodata = ({ biodataType, biodataId }) => {
             }
         }
     })
-    console.log(data);
     return (
         <div className="my-4">
             <h1 className="text-2xl font-bold dark:text-white mt-10 mb-2">Similar biodata may you like</h1>

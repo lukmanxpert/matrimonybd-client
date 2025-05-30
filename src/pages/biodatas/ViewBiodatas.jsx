@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useIsPremium from "../../hooks/useIsPremium";
 import { FaHeart } from "react-icons/fa";
-import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { PuffLoader } from "react-spinners";
 import Loading from "../../components/shared/Loading";
@@ -14,7 +13,6 @@ import { useEffect } from "react";
 
 const ViewBiodatas = () => {
     const isAdmin = useIsAdmin()
-    const auth = useAuth()
     const { biodataId } = useParams()
     const axiosPrivate = useAxiosPrivate()
     const { isPremium, isPending } = useIsPremium();
@@ -37,15 +35,14 @@ const ViewBiodatas = () => {
             return toast.error("Admin can't add to favourite")
         }
         const favouriteData = {
-            name: biodata?.name,
             biodataId: biodata?.biodataId,
+            name: biodata?.name,
             permanentAddress: biodata?.permanentDivision,
             occupation: biodata?.occupation,
-            authEmail: auth.email
         }
         try {
-            const result = await axiosPrivate.post("/addToFavourites", favouriteData);
-            if (result.data.insertedId) {
+            const result = await axiosPrivate.post("/api/users/addFavouriteBiodata", favouriteData);
+            if (result.data.success) {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -53,6 +50,16 @@ const ViewBiodatas = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+            }
+            if (result.data.error) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: result.data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
             }
         } catch (error) {
             console.log(error);
