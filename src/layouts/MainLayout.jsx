@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "../components/navbar/Navigation";
 import Footer from "../components/footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
     const { pathname } = useLocation()
@@ -17,6 +18,7 @@ const MainLayout = () => {
                 <div>
                     <Footer></Footer>
                 </div>}
+            <Toaster />
         </div>
     );
 };

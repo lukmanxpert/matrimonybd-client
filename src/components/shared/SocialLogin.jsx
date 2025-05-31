@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -9,7 +9,6 @@ const SocialLogin = () => {
 
     const { loginWithGoogle, setUser } = useContext(AuthContext)
     const navigate = useNavigate()
-    const { state } = useLocation();
     const axiosPublic = useAxiosPublic();
 
     const handleGoogleLogin = () => {
@@ -29,7 +28,7 @@ const SocialLogin = () => {
                     .catch((error) => {
                         console.error(error)
                     })
-                navigate(state ? state : "/")
+                navigate("/")
                 toast.success("Successfully Logged In")
             }).catch((error) => {
                 toast.error(error.message)
