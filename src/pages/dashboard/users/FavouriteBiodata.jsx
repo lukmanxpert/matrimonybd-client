@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import Loading from "../../../components/shared/Loading";
 
 const FavouriteBiodata = () => {
     const axiosPrivate = useAxiosPrivate();
@@ -54,7 +55,7 @@ const FavouriteBiodata = () => {
     }
 
     if (isLoading) {
-        return <p className="text-center mt-6 text-gray-500">Loading...</p>;
+        return <Loading />;
     }
 
     if (error) {

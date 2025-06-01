@@ -6,7 +6,7 @@ import { RiAdminFill } from "react-icons/ri";
 import { MdFavorite, MdGroupRemove } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
 import useIsAdmin from "../hooks/useIsAdmin";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Dashboard = () => {
     const { user, logOutUser, setUser } = useContext(AuthContext)
@@ -98,6 +98,7 @@ const Dashboard = () => {
             <div className="bg-[#f2f2f2] dark:bg-dark w-full p-4 text-black">
                 <Outlet></Outlet>
             </div>
+            <Toaster />
         </div>
     );
 };
